@@ -1,10 +1,10 @@
-set nocompatible 
-filetype off
- 
-set number
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set nocompatible " Don't be compatible with vi
+filetype indent on " Load language specific indents
+
+set number " line numbers
+set tabstop=4 " 4 spaces for tabs
+set shiftwidth=4 
+set softtabstop=4 " 4 spaces in tab when editing
 set expandtab " use spaces instead of tabs.
 set smarttab " let's tab key insert 'tab stops', and bksp deletes tabs.
 set shiftround " tab / shifting moves to closest tabstop.
@@ -56,7 +56,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 " Fugitive Vim
@@ -67,6 +67,12 @@ set clipboard+=unnamedplus
 
 " Key mappings
 inoremap jj <Esc>
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+nnoremap <leader><space> :nohlsearch<CR> " turn off search highlight
 
 nnoremap <Leader>y "*y
 vnoremap <Leader>y "*y

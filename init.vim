@@ -34,11 +34,9 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-syntastic/syntastic'
 Plug 'junegunn/seoul256.vim'
 Plug 'bling/vim-airline'
-Plug 'sbdchd/neoformat'
-"Plug 'Valloric/YouCompleteMe'
+Plug 'w0rp/ale'
 call plug#end()
 
 "Vim colors solarized
@@ -48,19 +46,16 @@ colo seoul256
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Syntastic
-let g:syntastic_python_pylint_exe = 'python -m pylint'
-let g:syntastic_javascript_checkers = ['jshint']
-set statusline+=%#warningsmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 " Fugitive Vim
 autocmd QuickFixCmdPost *grep* cwindow
+
+" Ale
+let g:airline#extensions#ale#enabled = 1
+" Ctrl-K previous error/warning
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+" Ctrl-J next error/warning
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_completion_enabled = 1
 
 set clipboard+=unnamedplus
 

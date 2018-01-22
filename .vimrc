@@ -34,7 +34,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-syntastic/syntastic'
 Plug 'junegunn/seoul256.vim'
 Plug 'bling/vim-airline'
 Plug 'w0rp/ale'

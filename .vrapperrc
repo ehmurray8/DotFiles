@@ -47,8 +47,8 @@ set clipboard+=unnamedplus
 inoremap jj <Esc>
 
 " move vertically by visual line
-nnoremap j gj
-nnoremap k gk
+" nnoremap j gj
+" nnoremap k gk
 
 nnoremap <leader><space> :nohlsearch<CR> " turn off search highlight
 

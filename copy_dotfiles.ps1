@@ -5,3 +5,4 @@ rm ../.vimrc
 rm ../.ideavimrc
 cp .vimrc ../.vimrc
 cp .vimrc ../.ideavimrc
+cp .vrapperrc ../.vrapperrc

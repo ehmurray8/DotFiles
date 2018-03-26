@@ -30,15 +30,6 @@ set gdefault " use the `g` flag by default.
 " allow the cursor to go anywhere in visual block mode.
 set virtualedit+=block
 
-call plug#begin('~/.config/nvim/plugged')
-Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/seoul256.vim'
-Plug 'bling/vim-airline'
-Plug 'w0rp/ale'
-call plug#end()
-
 "Vim colors solarized
 colo seoul256
 

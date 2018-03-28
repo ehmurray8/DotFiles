@@ -30,8 +30,6 @@ set gdefault " use the `g` flag by default.
 " allow the cursor to go anywhere in visual block mode.
 set virtualedit+=block
 
-"Vim colors solarized
-colo seoul256
 
 " NERD Tree
 map <C-n> :NERDTreeToggle<CR>

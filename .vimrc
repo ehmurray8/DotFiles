@@ -11,7 +11,6 @@ set shiftround " tab / shifting moves to closest tabstop.
 set autoindent " Match indents on new lines.
 set smartindent " Intellegently dedent / indent new lines based on rules.
 
-set surround
 
 " We have VCS -- we don't need this stuff.
 set nobackup " We have vcs, we don't need backups.

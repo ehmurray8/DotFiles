@@ -5,5 +5,5 @@ rm ../.vimrc
 rm ../.ideavimrc
 cp .vimrc ../.vimrc
 cp .vimrc ../.ideavimrc
-cat 'set surround " Enable surround.vim' > ../.ideavimrc
+Add-Content ../.ideavimrc 'set surround " Add surround.vim plugin'
 cp .vrapperrc ../.vrapperrc

@@ -5,4 +5,5 @@ rm ../.vimrc
 rm ../.ideavimrc
 cp .vimrc ../.vimrc
 cp .vimrc ../.ideavimrc
+cat 'set surround " Enable surround.vim' > ../.ideavimrc
 cp .vrapperrc ../.vrapperrc

@@ -53,6 +53,9 @@ autocmd QuickFixCmdPost *grep* cwindow
 set clipboard+=unnamedplus
 
 
+let g:ale_fixers = {'python': ['autopep8'],}
+
+
 " Key mappings
 inoremap jj <Esc>
 

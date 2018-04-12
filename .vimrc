@@ -11,6 +11,7 @@ set shiftround " tab / shifting moves to closest tabstop.
 set autoindent " Match indents on new lines.
 set smartindent " Intellegently dedent / indent new lines based on rules.
 
+
 " We have VCS -- we don't need this stuff.
 set nobackup " We have vcs, we don't need backups.
 set nowritebackup " We have vcs, we don't need backups.
@@ -30,17 +31,6 @@ set gdefault " use the `g` flag by default.
 " allow the cursor to go anywhere in visual block mode.
 set virtualedit+=block
 
-call plug#begin('~/.config/nvim/plugged')
-Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/seoul256.vim'
-Plug 'bling/vim-airline'
-Plug 'w0rp/ale'
-call plug#end()
-
-"Vim colors solarized
-colo seoul256
 
 " NERD Tree
 map <C-n> :NERDTreeToggle<CR>

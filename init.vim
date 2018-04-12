@@ -18,8 +18,7 @@ set noswapfile " They're just annoying. Who likes them?
 
 " don't nag me when hiding buffers
 set hidden " allow me to have buffers with unsaved changes.
-set autoread " when a file has changed on disk, just load it. Don't ask.
-
+set autoread " when a file has changed on disk, just load it. Don't ask.  
 " Make search more sane
 set ignorecase " case insensitive search
 set smartcase " If there are uppercase letters, become case-sensitive.
@@ -38,7 +37,20 @@ Plug 'junegunn/seoul256.vim'
 Plug 'bling/vim-airline'
 Plug 'w0rp/ale'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'jistr/vim-nerdtree-tabs'
 call plug#end()
+
+" Start deoplete at startup
+let g:deoplete#enable_at_startup = 1
+
+" Close deoplete when done
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" tern
+autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
+
 
 "Vim colors solarized
 colo seoul256
@@ -52,7 +64,7 @@ autocmd QuickFixCmdPost *grep* cwindow
 
 set clipboard+=unnamedplus
 
-
+" Set autopep8 as ale fixer for python
 let g:ale_fixers = {'python': ['autopep8'],}
 
 
@@ -64,11 +76,10 @@ nnoremap j gj
 nnoremap k gk
 
 nnoremap <leader><space> :nohlsearch<CR> " turn off search highlight
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
+" Allow using system clipboard for copy and paste
 nnoremap <Leader>y "*y
 vnoremap <Leader>y "*y
 nnoremap <Leader>p "*p
 vnoremap <Leader>p "*p
-
-nnoremap <C-m> :SyntasticToggleMode<Return>
-vnoremap <C-m> :SyntasticToggleMode<Return>

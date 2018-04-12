@@ -1,0 +1,16 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Emmet Murray
+	email = ehmurray8@gmail.com
+[push]
+	default = simple
+[credential]
+	helper = cache --timeout=7200
+[core]
+	editor = vim
+[alias]
+    st = status -s
+    lga = log --oneline --decorate --graph
+    a = add .
+    cm = commit -m
+    ph = push pl = pull

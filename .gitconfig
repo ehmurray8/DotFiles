@@ -13,4 +13,5 @@
     lga = log --oneline --decorate --graph
     a = add .
     cm = commit -m
-    ph = push pl = pull
+    ph = push
+    pl = pull

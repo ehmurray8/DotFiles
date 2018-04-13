@@ -71,6 +71,8 @@ let g:ale_fixers = {'python': ['autopep8'],}
 " Key mappings
 inoremap jj <Esc>
 
+nnoremap <esc> :noh<return><esc> " Remap escape to clear seach highlight
+
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk

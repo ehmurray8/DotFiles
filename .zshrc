@@ -94,5 +94,3 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias v='nvim'
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"

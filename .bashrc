@@ -12,8 +12,7 @@ esac
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
-# append to the history file, don't overwrite it
-shopt -s histappend
+# append to the history file, don't overwrite it shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
@@ -125,5 +124,3 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias v='nvim'
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"

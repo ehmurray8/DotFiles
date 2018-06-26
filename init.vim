@@ -1,44 +1,40 @@
-set nocompatible " Don't be compatible with vi
-filetype indent on " Load language specific indents
+set nocompatible    " not compatible with vi
+filetype indent on  " load language specific indents
 
-set number " line numbers
-set tabstop=4 " 4 spaces for tabs
-set shiftwidth=4 
-set softtabstop=4 " 4 spaces in tab when editing
-set expandtab " use spaces instead of tabs.
-set smarttab " let's tab key insert 'tab stops', and bksp deletes tabs.
-set shiftround " tab / shifting moves to closest tabstop.
-set autoindent " Match indents on new lines.
-set smartindent " Intellegently dedent / indent new lines based on rules.
+set number          " line numbers
+set tabstop=4       " 4 spaces for tabs
+set shiftwidth=4    " 4 spaces when using ==, <<, >> set softtabstop=4   " 4 spaces in tab when editing
+set expandtab       " use spaces instead of tabs
+set smarttab        " let's tab key insert 'tab stops', and bksp deletes tabs
+set shiftround      " tab / shifting moves to closest tabstop.
+set autoindent      " match indents on new lines
+set smartindent     " intellegently dedent / indent new lines based on rules.
 
-" We have VCS -- we don't need this stuff.
-set nobackup " We have vcs, we don't need backups.
-set nowritebackup " We have vcs, we don't need backups.
-set noswapfile " They're just annoying. Who likes them?
+set nobackup        " no file backups
+set nowritebackup   " no file backups
+set noswapfile      " no swp files
 
-" don't nag me when hiding buffers
-set hidden " allow me to have buffers with unsaved changes.
-set autoread " when a file has changed on disk, just load it. Don't ask.  
-" Make search more sane
-set ignorecase " case insensitive search
-set smartcase " If there are uppercase letters, become case-sensitive.
-set incsearch " live incremental searching
-set showmatch " live match highlighting
-set gdefault " use the `g` flag by default.
+set autoread        " when a file has changed on disk, automatically load it
 
-" allow the cursor to go anywhere in visual block mode.
-set virtualedit+=block
+set ignorecase      " case insensitive search
+set smartcase       " case sensitive search if there are uppercase letters
+set incsearch       " live incremental searching
+set showmatch       " live match highlighting
+set gdefault        " use the `g` flag by default.
 
+set virtualedit+=block " allow the cursor to go anywhere in visual block mode.
+
+" Plugins
 call plug#begin('~/.config/nvim/plugged')
-Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/seoul256.vim'
-Plug 'bling/vim-airline'
-Plug 'w0rp/ale'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'jistr/vim-nerdtree-tabs'
+Plug 'tpope/vim-surround'           " Supports surroundings, parentheses, brackets, quotes, XML tags, etc.
+Plug 'scrooloose/nerdtree'          " File explorer Ctrl+n
+Plug 'junegunn/seoul256.vim'        " Color scheme
+Plug 'bling/vim-airline'            " Statusbar
+Plug 'w0rp/ale'                     " Asynchronous syntax checker
+Plug 'Xuyuanp/nerdtree-git-plugin'  " Git symbols for files in nerdree
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Autocomplete engine
+Plug 'jistr/vim-nerdtree-tabs'      " Names Nerdtree tabs
+Plug 'tpope/vim-obsession'          " Easily create sessions with :Obsess
 call plug#end()
 
 " Start deoplete at startup
@@ -46,39 +42,36 @@ let g:deoplete#enable_at_startup = 1
 
 " Close deoplete when done
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" tern
-autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 
-
-"Vim colors solarized
+" Vim colors solarized
 colo seoul256
 
 " NERD Tree
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Fugitive Vim
-autocmd QuickFixCmdPost *grep* cwindow
-
 set clipboard+=unnamedplus
 
 " Set autopep8 as ale fixer for python
 let g:ale_fixers = {'python': ['autopep8'],}
 
-
-" Key mappings
-inoremap jj <Esc>
-
-nnoremap <esc> :noh<return><esc> " Remap escape to clear seach highlight
+" Remap escape to clear seach highlight
+nnoremap <esc> :noh<return><esc>
 
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
 
-nnoremap <leader><space> :nohlsearch<CR> " turn off search highlight
+" jj to escape
+inoremap jj <Esc>
+
+" Toggle all Nerdtree windows
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
+" Toggle current Nerdtree window
+map <C-n> :NERDTreeToggle<CR>
 
 " Allow using system clipboard for copy and paste
 nnoremap <Leader>y "*y

@@ -10,8 +10,16 @@
 	editor = vim
 [alias]
     st = status -s
-    lga = log --oneline --decorate --graph
+    lg = log --oneline --decorate --graph
     a = add .
     cm = commit -m
     ph = push
     pl = pull
+    rma = rm -r --cached .
+    cl = clone
+    clear = reset --hard HEAD
+    uf = checkout HEAD
+    cb = checkout -b
+    br = branch
+    dh = diff HEAD
+    d = diff

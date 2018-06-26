@@ -10,6 +10,7 @@ else
         echo "No .gitignore found for $1"
     else
         echo "$gitignore" > .gitignore 
+        echo "Session.vim" >> .gitignore
         echo "Successfully created .gitignore"
     fi
 fi

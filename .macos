@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+###
+## This file sets up Mac OS system setting defaults
+###
+
 osascript -e 'tell application "System Preferences" to quit'
 
 # Ask for the administrator password upfront
@@ -49,4 +53,7 @@ defaults write com.apple.finder ShowPathbar -bool true
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
 
 # Disable the warning when changing a file extension
-defaults write com.apple.finder FXEnableExtensionChangeWarning -bool 
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Finder: show hidden files by default
+defaults write com.apple.finder AppleShowAllFiles -bool true

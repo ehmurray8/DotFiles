@@ -24,3 +24,14 @@
     dh = diff HEAD
     d = diff
     ca = commit --amend
+[diff]
+	tool = vimdiff
+	mnemonicPrefix = true
+[format]
+	pretty = medium
+[help]
+	autoCorrect = -1
+[merge]
+	stat = true
+	tool = vimdiff
+	conflictstyle = diff3

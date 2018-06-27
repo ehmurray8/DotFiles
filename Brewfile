@@ -1,0 +1,7 @@
+tap "homebrew/core"
+tap "homebrew/bundle"
+brew "neovim"
+brew "python"
+brew "the_silver_searcher"
+brew "tmux"
+brew "zsh"

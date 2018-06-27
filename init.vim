@@ -78,3 +78,6 @@ nnoremap <Leader>y "*y
 vnoremap <Leader>y "*y
 nnoremap <Leader>p "*p
 vnoremap <Leader>p "*p
+
+" Toggle deoplete syntax highlighting
+nnoremap <Leader>d :call deoplete#toggle()<CR>

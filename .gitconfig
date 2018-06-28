@@ -24,6 +24,7 @@
     dh = diff HEAD
     d = diff
     ca = commit --amend
+    ch = checkout
 [diff]
 	tool = vimdiff
 	mnemonicPrefix = true

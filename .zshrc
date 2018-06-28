@@ -85,12 +85,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 #
-alias open='xdg-open'
-alias homework='open ~/OneDrive/Documents/Planner.txt'
-alias nvimconf='nvim ~/.config/nvim/init.vim'
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias v='nvim'
+alias agi='~/add-gitignore'

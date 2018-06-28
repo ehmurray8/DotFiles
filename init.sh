@@ -1,5 +1,12 @@
 #!/bin/sh
 
+###
+# TODO: Add support for command line arguments to only run parts of the script, i.e. only links
+# TODO: Add support for asking to install other programs, i.e. VSCode, PyCharm, Firefox
+# TODO: Ask about installing Zim
+# TODO: Look into installing programs on windows and Linux
+###
+
 unameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)     machine=Linux;;
@@ -17,11 +24,11 @@ if [ "$machine" = "Mac" ]; then
     filesToLink[${#filesToLink[*]}]=$".tmux-osx.conf"
     filesToLink[${#filesToLink[*]}]=$".zshrc"
     echo "Installing Homebrew..."
-    #/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     echo "Installing programs using brew..."
-    #brew bundle
+    brew bundle
     echo "Setting up Mac defaults..."
-    #./.macos
+    ./.macos
 elif [ "$machine" = "Linux" ]; then
     filesToLink[${#filesToLink[*]}]=".zshrc"
 elif [ "$machine" = "Cygwin"] || [ "$machine" = "MinGw" ]; then

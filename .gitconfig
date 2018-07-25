@@ -29,6 +29,7 @@
     rb = rebase
     rbc = rebase --continue
     rba = rebase --abort
+    set-email = config user.email
 [format]
 	pretty = medium
 [help]

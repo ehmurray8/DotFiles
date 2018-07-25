@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Emmet Murray
-	email = 
+	email = ehmurray8@gmail.com
 [push]
 	default = simple
 [credential]
@@ -18,16 +18,17 @@
     rma = rm -r --cached .
     cl = clone
     clear = reset --hard HEAD
-    uf = checkout HEAD
+    ch = checkout HEAD
     cb = checkout -b
     br = branch
     dh = diff HEAD
     d = diff
     ca = commit --amend
-    ch = checkout
-[diff]
-	tool = vimdiff
-	mnemonicPrefix = true
+    co = checkout
+    cl = clone
+    rb = rebase
+    rbc = rebase --continue
+    rba = rebase --abort
 [format]
 	pretty = medium
 [help]

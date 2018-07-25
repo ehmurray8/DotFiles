@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ###
 # TODO: Add support for command line arguments to only run parts of the script, i.e. only links
@@ -29,8 +29,18 @@ if [ "$machine" = "Mac" ]; then
     brew bundle
     echo "Setting up Mac defaults..."
     ./.macos
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 elif [ "$machine" = "Linux" ]; then
-    filesToLink[${#filesToLink[*]}]=".zshrc"
+    filesToLink[${#filesToLink[*]}]=$".zshrc"
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 elif [ "$machine" = "Cygwin"] || [ "$machine" = "MinGw" ]; then
     filesToLink[${#filesToLink[*]}]=".vrapperrc"
     filesToLink[${#filesToLink[*]}]="Microsoft.PowerShell_profile.ps1"

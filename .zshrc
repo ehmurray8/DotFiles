@@ -1,9 +1,5 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-if [[ -s "${ZDOTDIR:-$HOME}/.zim/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zim/init.zsh"
-fi
-
 case "${unameOut}" in
     Linux*)     machine=Linux;;
     Darwin*)    machine=Mac;;
@@ -105,6 +101,39 @@ fi
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
+
+# OH-MY-ZSH Config
+ZSH_THEME="agnoster"
+plugins=(
+    git
+    vi-mode
+)
+
+
+export ZSH=~/.oh-my-zsh
+
+HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+source $ZSH/oh-my-zsh.sh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

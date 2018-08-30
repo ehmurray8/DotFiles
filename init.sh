@@ -3,7 +3,6 @@
 ###
 # TODO: Add support for command line arguments to only run parts of the script, i.e. only links
 # TODO: Add support for asking to install other programs, i.e. VSCode, PyCharm, Firefox
-# TODO: Ask about installing Zim
 # TODO: Look into installing programs on windows and Linux
 ###
 
@@ -97,16 +96,6 @@ else
     ln -s "$PWD/init.vim" "$nvimFile"
 fi
 
-if [ "$machine" = "Mac" ]; then
-    echo  "Setting up Zim..."
-    git clone --recursive https://github.com/zimfw/zimfw.git ${ZDOTDIR:-${HOME}}/.zim
-    setopt EXTENDED_GLOB
-    for template_file in ${ZDOTDIR:-${HOME}}/.zim/templates/*; do
-        user_file="${ZDOTDIR:-${HOME}}/.${template_file:t}"
-        touch ${user_file}
-        ( print -rn "$(<${template_file})$(<${user_file})" >! ${user_file} ) 2>/dev/null
-    done
-    chsh -s =zsh
-    echo "Please open a new terminal window, and type the following command..."
-    echo "source ${ZDOTDIR:-${HOME}}/.zlogin"
+if [ "$machine" = "Mac" ] || [ "$machine" = "Linux" ] ; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi

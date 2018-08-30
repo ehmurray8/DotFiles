@@ -28,7 +28,6 @@ set virtualedit+=block " allow the cursor to go anywhere in visual block mode.
 call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-surround'           " Supports surroundings, parentheses, brackets, quotes, XML tags, etc.
 Plug 'scrooloose/nerdtree'          " File explorer Ctrl+n
-Plug 'junegunn/seoul256.vim'        " Color scheme
 Plug 'bling/vim-airline'            " Statusbar
 Plug 'w0rp/ale'                     " Asynchronous syntax checker
 Plug 'Xuyuanp/nerdtree-git-plugin'  " Git symbols for files in nerdree
@@ -46,8 +45,6 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-" Vim colors solarized
-colo seoul256
 
 " NERD Tree
 map <C-n> :NERDTreeToggle<CR>

@@ -107,8 +107,9 @@ ZSH_THEME="agnoster"
 plugins=(
     git
     vi-mode
+    zsh-syntax-highlighting
+    history-substring-search
 )
-
 
 export ZSH=~/.oh-my-zsh
 
@@ -132,8 +133,20 @@ ENABLE_CORRECTION="true"
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
+#
+
+ZSH_DISABLE_COMPFIX="true"
 
 source $ZSH/oh-my-zsh.sh
+
+prompt_dir() {
+    prompt_segment blue black "${PWD##*/}"
+}
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -144,3 +157,6 @@ alias agi='~/add-gitignore'
 alias g='git'
 alias ddd="rm -Rf $HOME/Library/Developer/Xcode/DerivedData/*"
 alias xvim="open -a /Applications/Xcode+Vim.app"
+
+# added by travis gem
+[ -f /home/emmet/.travis/travis.sh ] && source /home/emmet/.travis/travis.sh

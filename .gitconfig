@@ -30,6 +30,8 @@
     rbc = rebase --continue
     rba = rebase --abort
     set-email = config user.email
+    pup = push --set-upstream origin 
+    delb = branch -d
 [format]
 	pretty = medium
 [help]

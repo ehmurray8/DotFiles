@@ -1,4 +1,5 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PROMPT_COMMAND="history -a; history -n"
 
 case "${unameOut}" in
     Linux*)     machine=Linux;;
@@ -138,6 +139,10 @@ ENABLE_CORRECTION="true"
 ZSH_DISABLE_COMPFIX="true"
 
 source $ZSH/oh-my-zsh.sh
+
+unsetopt beep
+set visualbell
+set t_vb=
 
 prompt_dir() {
     prompt_segment blue black "${PWD##*/}"

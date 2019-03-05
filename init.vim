@@ -76,5 +76,7 @@ vnoremap <Leader>y "*y
 nnoremap <Leader>p "*p
 vnoremap <Leader>p "*p
 
+let g:python_host_prog = '/usr/bin/pythonn'
+
 " Toggle deoplete syntax highlighting
 nnoremap <Leader>d :call deoplete#toggle()<CR>

@@ -13,10 +13,11 @@ if [ $machine = "Mac" ]; then
     # Customize to your needs...
     function proxyOn {
         # Proxy setup
-        # Need to set PROXY_ADDRESS and PROXY_PORT in .zprofile
+        # Need to set PROXY_ADDRESS and PROXY_PORT in .zshenv
         # PROXY_PORT needs to be a string, PROXY_ADDRESS needs to be the address unquoted
-        # Also set SSID_PROXY_NAME in .zprofile
+        # Also set SSID_PROXY_NAME in .zshenv
 
+        source ~/.zshenv
         PROXY_USERNAME=$(printf $(security find-internet-password -s "${PROXY_ADDRESS}" | grep "acct" | cut -d '"' -f 4))
         PROXY_PASSWORD=$(printf $(security 2>&1 >/dev/null find-internet-password -gs "${PROXY_ADDRESS}" | cut -d '"' -f 2))
         PROXY="http://${PROXY_USERNAME}:${PROXY_PASSWORD}@${PROXY_ADDRESS}:${PROXY_PORT}"

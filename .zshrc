@@ -5,7 +5,6 @@ export PROMPT_COMMAND="history -a; history -n"
 FD_OPTIONS="--follow --exclude .git --exclude node_modules"
 export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_CTRL_R_OPTS="--preview-window right:40% --preview 'echo {}'"
-
 export LANG=en_US.UTF-8
 
 # /usr/bin/setxkbmap -option "caps:swapescape"

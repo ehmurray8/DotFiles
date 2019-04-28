@@ -8,7 +8,9 @@ Dot files for easy access.
 fd - https://github.com/sharkdp/fd
 
 # Cat alternative with syntax highlighting
-bat - https://github.com/sharkdp/bat # Terminal multiplexer
+bat - https://github.com/sharkdp/bat 
+
+# Terminal multiplexer
 tmux - https://github.com/tmux/tmux
 
 # Text editor
@@ -32,8 +34,10 @@ prettyping - https://github.com/denilsonsa/prettyping
 # Fuzzy finder for finding files, autocomplete, history search, and more
 fzf - https://github.com/junegunn/fzf
 
-#Status line for tmux
-tmux-powerline - https://github.com/passcod/tmux-powerline
+#Status line
+powerline - https://github.com/powerline/powerline
+    - install using pip, and then set POWERLINE_ROOT directory
+    - link the default.json file to $POWERLINE_ROOT/powerline/config_files/themes/tmux/default.json
 
 
 ## Tutorials

@@ -122,3 +122,5 @@ alias g='git'
 
 # added by travis gem
 [ -f /home/emmet/.travis/travis.sh ] && source /home/emmet/.travis/travis.sh
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

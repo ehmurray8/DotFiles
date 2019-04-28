@@ -6,32 +6,74 @@
 	default = simple
 [credential]
 	helper = cache --timeout=7200
+[color]
+    branch = true
+    interactive = true
+    diff = true
+    status = true
+    showbranch = true
+    ui = true
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green 
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+    new = green bold
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = cyan
 [core]
 	editor = vim
 [alias]
-    st = status -s
-    lg = log --oneline --decorate --graph
+    al = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g' | less
     a = add .
-    cm = commit -m
-    ph = push
-    pl = pull
-    rma = rm -r --cached .
+    b = branch
+    ca = commit --amend
+    cb = checkout -b
+    ch = checkout HEAD
     cl = clone
     clear = reset --hard HEAD
-    ch = checkout HEAD
-    cb = checkout -b
-    br = branch
-    dh = diff HEAD
-    d = diff
-    ca = commit --amend
+    cm = commit -m
     co = checkout
-    cl = clone
+    cof = ! git co $(fzf)
+    d = diff
+    dh = diff HEAD
+    dhf = !git diff HEAD $(fzf)
+    ds = diff --name-status
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    lga = log -p
+    lgf = log -p -M --follow -- stat -- init.vim
+    sh = show --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    m = merge
+    ph = push
+    pht = push --tags
+    pl = pull
+    pup = push --set-upstream origin 
     rb = rebase
     rbc = rebase --continue
     rba = rebase --abort
+    rma = rm -r --cached .
+    rmb = branch -d
     set-email = config user.email
-    pup = push --set-upstream origin 
-    delb = branch -d
+    sd = diff HEAD stash@{0} --name-status
+    sdi = "!f() { git diff HEAD stash@{$1} --name-status; }; f"
+    sdf = diff HEAD stash@{0}
+    sdfi = "!f() { git diff HEAD stash@{$1}; }; f"
+    sd = stash drop
+    spi = "!f() { git stash drop stash@{$1}; }; f"
+    sl = stash list
+    st = status -sb
+    stha = stash push --include-untracked
+    sp = stash pop
+    spi = "!f() { git stash pop stash@{$1}; }; f"
+[blame]
+    date = relative
+[status]
+    showUntrackedFiles = all
 [format]
 	pretty = medium
 [help]

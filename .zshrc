@@ -1,6 +1,16 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PROMPT_COMMAND="history -a; history -n" 
-case "$(uname)" in
+export PROMPT_COMMAND="history -a; history -n"
+
+# FZF Config
+FD_OPTIONS="--follow --exclude .git --exclude node_modules"
+export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
+export FZF_CTRL_R_OPTS="--preview-window right:40% --preview 'echo {}'"
+
+export LANG=en_US.UTF-8
+
+# /usr/bin/setxkbmap -option "caps:swapescape"
+
+case "${unameOut}" in
     Linux*)     machine=Linux;;
     Darwin*)    machine=Mac;;
     CYGWIN*)    machine=Cygwin;;
@@ -8,17 +18,10 @@ case "$(uname)" in
     *)          machine="UNKNOWN:${unameOut}"
 esac
 
-
 if [ $machine = "Mac" ]; then
     # Customize to your needs...
     function proxyOn {
         # Proxy setup
-        # Need to set PROXY_ADDRESS and PROXY_PORT in .zprofile
-        # PROXY_PORT needs to be a string, PROXY_ADDRESS needs to be the address unquoted
-        # Also set SSID_PROXY_NAME in .zprofile
-
-        PROXY_USERNAME=$(printf $(security find-internet-password -s "${PROXY_ADDRESS}" | grep "acct" | cut -d '"' -f 4))
-        PROXY_PASSWORD=$(printf $(security 2>&1 >/dev/null find-internet-password -gs "${PROXY_ADDRESS}" | cut -d '"' -f 2))
         PROXY="http://${PROXY_USERNAME}:${PROXY_PASSWORD}@${PROXY_ADDRESS}:${PROXY_PORT}"
         export http_proxy="${PROXY}"
         export HTTP_PROXY="${PROXY}"
@@ -131,7 +134,25 @@ alias agi='~/add-gitignore'
 alias g='git'
 alias ddd="rm -Rf $HOME/Library/Developer/Xcode/DerivedData/*"
 alias xvim="open -a /Applications/Xcode+Vim.app"
+alias t='tmux'
+alias tkill="tmux kill-session -t"
+alias tnew="tmux new -t"
+alias pping="prettyping --nolegend"
+alias preview="fzf --preview 'bat --color=\"always\" {}'"
+alias open="xdg-open"
+
+function mouseOn {
+    sd -i "(set -g mouse (on|off))" "set -g mouse on" ~/.tmux.conf
+    tmux source-file ~/.tmux.conf
+}
+
+function mouseOff {
+    sd -i "(set -g mouse (on|off))" "set -g mouse off" ~/.tmux.conf
+    tmux source-file ~/.tmux.conf
+}
 
 
 # added by travis gem
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+[ -f /home/emmet/.travis/travis.sh ] && source /home/emmet/.travis/travis.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

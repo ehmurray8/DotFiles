@@ -33,6 +33,11 @@ if [ "$machine" = "Mac" ]; then
 
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+    brew install tree
+    brew install tmux
+    brew install nvim
+    brew install the_silver_searcher
 elif [ "$machine" = "Linux" ]; then
     filesToLink[${#filesToLink[*]}]=$".zshrc"
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

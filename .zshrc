@@ -8,28 +8,16 @@ case "$(uname)" in
     *)          machine="UNKNOWN:${unameOut}"
 esac
 
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
 if [ $machine = "Mac" ]; then
     # Customize to your needs...
     function proxyOn {
-        # Proxy setup
-        # Need to set PROXY_ADDRESS and PROXY_PORT in .zshenv
-        # PROXY_PORT needs to be a string, PROXY_ADDRESS needs to be the address unquoted
-        # Also set SSID_PROXY_NAME in .zshenv
-
-        source ~/.zshenv
-        PROXY_USERNAME=$(printf $(security find-internet-password -s "${PROXY_ADDRESS}" | grep "acct" | cut -d '"' -f 4))
-        PROXY_PASSWORD=$(printf $(security 2>&1 >/dev/null find-internet-password -gs "${PROXY_ADDRESS}" | cut -d '"' -f 2))
-        PROXY="http://${PROXY_USERNAME}:${PROXY_PASSWORD}@${PROXY_ADDRESS}:${PROXY_PORT}"
-        export http_proxy="${PROXY}"
-        export HTTP_PROXY="${PROXY}"
-        export https_proxy="${PROXY}"
-        export HTTPS_PROXY="${PROXY}"
-        unset PROXY_ADDRESS
-        unset PROXY_PORT
-        unset PROXY_USERNAME
-        unset PROXY_PASSWORD
-        unset PROXY
+        # Using cntlm
+        export http_proxy="http://127.0.0.1:3128"
+        export HTTP_PROXY="http://127.0.0.1:3128"
+        export https_proxy="http://127.0.0.1:3128"
+        export HTTPS_PROXY="http://127.0.0.1:3128"
         echo "Proxy tunnel enabled"
     }
 
@@ -39,6 +27,10 @@ if [ $machine = "Mac" ]; then
         unset https_proxy
         unset HTTPS_PROXY
         echo "Proxy tunnel disabled"
+    }
+
+    function podRefresh {
+        rm -rf Pods && rm -f Podfile.lock && pod install
     }
 
     AIRPORT_CMD="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"

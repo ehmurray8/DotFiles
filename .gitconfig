@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Emmet Murray
-	email = ehmurray8@gmail.com
+    email = $GIT_EMAIL
 [push]
 	default = simple
 [credential]
@@ -32,6 +32,7 @@
     set-email = config user.email
     pup = push --set-upstream origin 
     delb = branch -d
+    dn = diff --name-status
 [format]
 	pretty = medium
 [help]

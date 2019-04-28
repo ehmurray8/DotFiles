@@ -1,6 +1,16 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PROMPT_COMMAND="history -a; history -n" 
-case "$(uname)" in
+export PROMPT_COMMAND="history -a; history -n"
+
+# FZF Config
+FD_OPTIONS="--follow --exclude .git --exclude node_modules"
+export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
+export FZF_CTRL_R_OPTS="--preview-window right:40% --preview 'echo {}'"
+
+export LANG=en_US.UTF-8
+
+# /usr/bin/setxkbmap -option "caps:swapescape"
+
+case "${unameOut}" in
     Linux*)     machine=Linux;;
     Darwin*)    machine=Mac;;
     CYGWIN*)    machine=Cygwin;;
@@ -8,9 +18,8 @@ case "$(uname)" in
     *)          machine="UNKNOWN:${unameOut}"
 esac
 
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-
 if [ $machine = "Mac" ]; then
+    export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
     # Customize to your needs...
     function proxyOn {
         # Using cntlm
@@ -124,7 +133,25 @@ alias agi='~/add-gitignore'
 alias g='git'
 alias ddd="rm -Rf $HOME/Library/Developer/Xcode/DerivedData/*"
 alias xvim="open -a /Applications/Xcode+Vim.app"
+alias t='tmux'
+alias tkill="tmux kill-session -t"
+alias tnew="tmux new -t"
+alias pping="prettyping --nolegend"
+alias preview="fzf --preview 'bat --color=\"always\" {}'"
+alias open="xdg-open"
+
+function mouseOn {
+    sd -i "(set -g mouse (on|off))" "set -g mouse on" ~/.tmux.conf
+    tmux source-file ~/.tmux.conf
+}
+
+function mouseOff {
+    sd -i "(set -g mouse (on|off))" "set -g mouse off" ~/.tmux.conf
+    tmux source-file ~/.tmux.conf
+}
 
 
 # added by travis gem
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+[ -f /home/emmet/.travis/travis.sh ] && source /home/emmet/.travis/travis.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,5 +1,4 @@
-set nocompatible    " not compatible with vi
-filetype indent on  " load language specific indents
+set nocompatible    " not compatible with vi filetype indent on  " load language specific indents
 
 set number          " line numbers
 set tabstop=4       " 4 spaces for tabs
@@ -16,6 +15,8 @@ set noswapfile      " no swp files
 
 set autoread        " when a file has changed on disk, automatically load it
 
+set undofile        " History mainained after closing file
+
 set ignorecase      " case insensitive search
 set smartcase       " case sensitive search if there are uppercase letters
 set incsearch       " live incremental searching
@@ -26,15 +27,25 @@ set virtualedit+=block " allow the cursor to go anywhere in visual block mode.
 
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
-Plug 'tpope/vim-surround'           " Supports surroundings, parentheses, brackets, quotes, XML tags, etc.
-Plug 'scrooloose/nerdtree'          " File explorer Ctrl+n
+Plug 'tpope/vim-surround'           " Supports surroundings, parentheses, brackets, quotes, XML tags, etc.; Usage cs<
 Plug 'bling/vim-airline'            " Statusbar
 Plug 'w0rp/ale'                     " Asynchronous syntax checker
 Plug 'Xuyuanp/nerdtree-git-plugin'  " Git symbols for files in nerdree
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Autocomplete engine
 Plug 'jistr/vim-nerdtree-tabs'      " Names Nerdtree tabs
+Plug 'scrooloose/nerdtree'          " File explorer Ctrl+n
+Plug 'Xuyuanp/nerdtree-git-plugin'  " Git symbols for files in nerdree
 Plug 'tpope/vim-obsession'          " Easily create sessions with :Obsess
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-commentary'
+Plug 'ryanoasis/vim-devicons'       " Icons for nerdtree
+Plug 'tpope/vim-fugitive'           " Git plugin
+Plug 'tommcdo/vim-fubitive'         " Bitbucket support for vim fugitive
+Plug 'tpope/vim-rhubarb'            " Github support for vim fugitive
 call plug#end()
+
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 " Start deoplete at startup
 let g:deoplete#enable_at_startup = 1
@@ -76,7 +87,15 @@ vnoremap <Leader>y "*y
 nnoremap <Leader>p "*p
 vnoremap <Leader>p "*p
 
-let g:python_host_prog = '/usr/bin/pythonn'
+let g:python_host_prog = '/usr/bin/python'
+
+" Use <C-L> to expand NerdTree pane by 10 columns
+map <C-L> 10<C-w>>
+
+" Use <C-H> to shrink NerdTree pane by 10 columns
+map <C-H> 10<C-w><
+
+nnoremap <silent> <C-S-o> :FZF<CR>
 
 " Toggle deoplete syntax highlighting
 nnoremap <Leader>d :call deoplete#toggle()<CR>

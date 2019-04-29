@@ -39,6 +39,9 @@ powerline - https://github.com/powerline/powerline
     - install using pip, and then set POWERLINE_ROOT directory
     - link the default.json file to $POWERLINE_ROOT/powerline/config_files/themes/tmux/default.json
 
+# Interactive system resource diagnostic tool
+htop - https://github.com/hishamhm/htop
+
 
 ## Tutorials
 fzf - https://www.youtube.com/watch?v=qgG5Jhi_Els
@@ -52,6 +55,7 @@ tmux:
 gitaliases - https://www.atlassian.com/blog/git/advanced-git-aliases
 git - https://statico.github.io/vim3.html
 vim - https://statico.github.io/vim3.html
+cli - https://remysharp.com/2018/08/23/cli-improved
 
 
 ## Zsh

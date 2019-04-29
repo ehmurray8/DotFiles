@@ -46,9 +46,6 @@ elif [ "$machine" = "Linux" ]; then
 
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-elif [ "$machine" = "Cygwin"] || [ "$machine" = "MinGw" ]; then
-    filesToLink[${#filesToLink[*]}]=".vrapperrc"
-    filesToLink[${#filesToLink[*]}]="Microsoft.PowerShell_profile.ps1"
 fi
 
 echo "Linking DotFiles..."

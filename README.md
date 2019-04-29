@@ -1,5 +1,5 @@
 # DotFiles
-Dot files for easy access. Run the init.sh script to setup default configuration, and link dotfiles.
+Dot files for use on Mac and Linux machines. Run the init.sh script to setup default configuration, and link dotfiles.
 
 
 ## Programs

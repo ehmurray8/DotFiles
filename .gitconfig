@@ -36,7 +36,7 @@
 [core]
 	editor = vim
 [alias]
-    al = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g' | less
+    al = ! git config --get-regexp alias | sd 'alias[\\.](\\S*)' '$1 =' | less
     a = add .
     b = branch
     bl = blame -wMc

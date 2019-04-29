@@ -1,4 +1,6 @@
-set nocompatible    " not compatible with vi filetype indent on  " load language specific indents
+set nocompatible    " not compatible with vi filetype indent on
+
+set syntax=on
 
 set number          " line numbers
 set tabstop=4       " 4 spaces for tabs
@@ -38,11 +40,12 @@ Plug 'Xuyuanp/nerdtree-git-plugin'  " Git symbols for files in nerdree
 Plug 'tpope/vim-obsession'          " Easily create sessions with :Obsess
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'         " Use gc to comment out a block
 Plug 'ryanoasis/vim-devicons'       " Icons for nerdtree
 Plug 'tpope/vim-fugitive'           " Git plugin
 Plug 'tommcdo/vim-fubitive'         " Bitbucket support for vim fugitive
 Plug 'tpope/vim-rhubarb'            " Github support for vim fugitive
+Plug 'sheerun/vim-polyglot'         " Syntax for most languages
 call plug#end()
 
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1

@@ -75,6 +75,7 @@ Install syntax highlighting plugin by running the following command:
 * Nerd Fonts - https://github.com/ryanoasis/nerd-fonts
 * Switch between nerdtree and file - C-wC-w
 * Tmux colors - https://superuser.com/questions/285381/how-does-the-tmux-color-palette-work/1104214#1104214
+* Powerline config- https://powerline.readthedocs.io/en/latest/configuration/segments/common.html
 
 
 ## Local config

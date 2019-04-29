@@ -2,11 +2,6 @@
 	"segments": {
 		"right": [
             {
-                "function": "powerline.segments.common.wthr.weather",
-                "unit": "F",
-                "priority": 20
-            },
-            {
                 "function": "powerline.segments.common.bat.battery",
                 "priority": 30
             },

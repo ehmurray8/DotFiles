@@ -50,18 +50,18 @@ Dot files for easy access.
 
 
 ## Tutorials
-fzf - https://www.youtube.com/watch?v=qgG5Jhi_Els
-gitconfig - https://gist.github.com/rab/4067067
-tmux:
+* fzf - https://www.youtube.com/watch?v=qgG5Jhi_Els
+* gitconfig - https://gist.github.com/rab/4067067
+* tmux:
     - https://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/
     - https://github.com/gpakosz/.tmux
     - https://hackernoon.com/a-gentle-introduction-to-tmux-8d784c404340
     - https://leanpub.com/the-tao-of-tmux/read#troubleshoot-site-paths
 
-gitaliases - https://www.atlassian.com/blog/git/advanced-git-aliases
-git - https://statico.github.io/vim3.html
-vim - https://statico.github.io/vim3.html
-cli - https://remysharp.com/2018/08/23/cli-improved
+* git aliases - https://www.atlassian.com/blog/git/advanced-git-aliases
+* git - https://statico.github.io/vim3.html
+* vim - https://statico.github.io/vim3.html
+* cli - https://remysharp.com/2018/08/23/cli-improved
 
 
 ## Zsh

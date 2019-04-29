@@ -4,43 +4,49 @@ Dot files for easy access.
 
 ## Programs
 
-# File Searching
-fd - https://github.com/sharkdp/fd
+* File Searching
+`fd - https://github.com/sharkdp/fd`
 
-# Cat alternative with syntax highlighting
-bat - https://github.com/sharkdp/bat 
+* Cat alternative with syntax highlighting
+`bat - https://github.com/sharkdp/bat`
 
-# Terminal multiplexer
-tmux - https://github.com/tmux/tmux
+* Terminal multiplexer
+`tmux - https://github.com/tmux/tmux`
 
-# Text editor
-neovim - https://github.com/neovim/neovim
+* Text editor
+`neovim - https://github.com/neovim/neovim`
 
-# Find and replace, sed alternative
-sd - https://github.com/chmln/sd
+* Find and replace, sed alternative
+`sd - https://github.com/chmln/sd`
 
-# Grep/Ack alternative for searching
-ag - https://github.com/ggreer/the_silver_searcher
+* Grep/Ack alternative for searching
+`ag - https://github.com/ggreer/the_silver_searcher`
 
-# Bash alternative
-zsh - https://www.zsh.org/
+* Bash alternative
+`zsh - https://www.zsh.org/`
 
-# Plugin/Settings manager for zsh
-oh-my-zsh - https://github.com/robbyrussell/oh-my-zsh/
+* Plugin/Settings manager for zsh
+`oh-my-zsh - https://github.com/robbyrussell/oh-my-zsh/`
 
-# Ping alternative
-prettyping - https://github.com/denilsonsa/prettyping
+* Ping alternative
+`prettyping - https://github.com/denilsonsa/prettyping`
 
-# Fuzzy finder for finding files, autocomplete, history search, and more
-fzf - https://github.com/junegunn/fzf
+* Fuzzy finder for finding files, autocomplete, history search, and more
+`fzf - https://github.com/junegunn/fzf`
 
-#Status line
-powerline - https://github.com/powerline/powerline
+* Status line
+`powerline - https://github.com/powerline/powerline`
     - install using pip, and then set POWERLINE_ROOT directory
     - link the default.json file to $POWERLINE_ROOT/powerline/config_files/themes/tmux/default.json
 
-# Interactive system resource diagnostic tool
-htop - https://github.com/hishamhm/htop
+* Interactive system resource diagnostic tool
+`htop - https://github.com/hishamhm/htop`
+
+* Better diffs
+`diff-so-fancy - https://github.com/so-fancy/diff-so-fancy`
+
+* Disk usage
+`ncdu - https://github.com/rofl0r/ncdu`
 
 
 ## Tutorials

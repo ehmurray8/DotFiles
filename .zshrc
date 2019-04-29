@@ -7,7 +7,6 @@ export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_CTRL_R_OPTS="--preview-window right:40% --preview 'echo {}'"
 export LANG=en_US.UTF-8
 
-g config --global user.email $GIT_EMAIL
 
 case "${unameOut}" in
     Linux*)     machine=Linux;;
@@ -112,7 +111,6 @@ source $ZSH/oh-my-zsh.sh
 
 unsetopt beep
 set visualbell
-set t_vb=
 
 prompt_dir() {
     prompt_segment blue black "${PWD##*/}"
@@ -137,6 +135,7 @@ alias tkill="tmux kill-session -t"
 alias tnew="tmux new -t"
 alias pping="prettyping --nolegend"
 alias preview="fzf --preview 'bat --color=\"always\" {}'"
+alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 alias open="xdg-open"
 
 function mouseOn {
@@ -156,3 +155,6 @@ function mouseOff {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source ~/.zshrc.local
+
+$(git config --global user.email $GIT_EMAIL)
+

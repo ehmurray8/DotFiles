@@ -4,6 +4,7 @@
 # TODO: Add support for command line arguments to only run parts of the script, i.e. only links
 # TODO: Add support for asking to install other programs, i.e. VSCode, PyCharm, Firefox
 # TODO: Look into installing programs on windows and Linux
+# TODO: Install README programs in script.
 ###
 
 unameOut="$(uname -s)"

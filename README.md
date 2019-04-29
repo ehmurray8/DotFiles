@@ -1,5 +1,5 @@
 # DotFiles
-Dot files for easy access.
+Dot files for easy access. Run the init.sh script to setup default configuration, and link dotfiles.
 
 
 ## Programs
@@ -48,6 +48,8 @@ Dot files for easy access.
 * Disk usage
 `ncdu - https://github.com/rofl0r/ncdu`
 
+* Quick help on a command
+`tldr - https://github.com/tldr-pages/tldr`
 
 ## Tutorials
 * fzf - https://www.youtube.com/watch?v=qgG5Jhi_Els

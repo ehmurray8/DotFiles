@@ -39,6 +39,7 @@
     al = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g' | less
     a = add .
     b = branch
+    bl = blame -wMc
     ca = commit --amend
     cb = checkout -b
     ch = checkout HEAD

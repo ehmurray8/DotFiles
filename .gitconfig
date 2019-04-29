@@ -1,7 +1,6 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Emmet Murray
-    email = $GIT_EMAIL
 [push]
 	default = simple
 [credential]

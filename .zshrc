@@ -7,7 +7,7 @@ export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_CTRL_R_OPTS="--preview-window right:40% --preview 'echo {}'"
 export LANG=en_US.UTF-8
 
-# /usr/bin/setxkbmap -option "caps:swapescape"
+g config --global user.email = $GIT_EMAIL
 
 case "${unameOut}" in
     Linux*)     machine=Linux;;
@@ -154,3 +154,5 @@ function mouseOff {
 [ -f /home/emmet/.travis/travis.sh ] && source /home/emmet/.travis/travis.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source ~/.zshrc.local

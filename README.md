@@ -63,3 +63,9 @@ Install syntax highlighting plugin by running the following command:
 Nerd Fonts - https://github.com/ryanoasis/nerd-fonts
 Switch between nerdtree and file - C-wC-w
 Tmux colors - https://superuser.com/questions/285381/how-does-the-tmux-color-palette-work/1104214#1104214
+
+
+## Local config
+Create a file in ~ called .zshrc.local and add any local zshrc configuration to the file
+    - GIT_EMAIL
+    - POWERLINE_ROOT 

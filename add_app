@@ -1,0 +1,38 @@
+#!/bin/bash
+
+apps_folder=/usr/share/applications
+
+if [ "$EUID" -ne 0 ]; then
+    echo "This script needs to write the .desktop file to the $apps_folder directory which requires root access."
+    echo "Please run this script again using sudo."
+    exit
+fi
+
+# Read the output directory name, and create output directory
+read -p "What should the output directory be called? [No spaces] " output_directory_name
+output_directory_path=$apps_folder/$output_directory_name
+mkdir $output_directory_path
+output_file=$output_directory_path/$output_directory_name.desktop
+
+# Create the output file, and write the first two lines of the file
+touch $output_file
+echo "[Desktop Entry]" >> $output_file
+echo "Type=Application" >> $output_file
+
+# Read the Application Name, and write the next line of the file
+read -p "What is the name of the application? " application_name
+echo "Name=$application_name" >> $output_file
+
+# Read the Application comment, and write the next line of the file
+read -p "Comment about the application? " comment
+echo "Comment=$comment" >> $output_file
+
+# Read the Binary path for the Application, and write the next line of the file
+read -p "What is the Binary path? [The pwd will be prepended] " binary_path
+echo "Exec=$(pwd)/$binary_path" >> $output_file
+
+# Read the icon path, and write the next line of the file
+read -p "What is the icon name? [The pwd will be prepended] " icon_path
+echo "Icon=$(pwd)/$icon_path" >> $output_file
+
+echo "Finished creating the file."

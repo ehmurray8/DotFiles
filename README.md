@@ -82,9 +82,8 @@ Install syntax highlighting plugin by running the following command:
 * Create a file in ~ called .zshrc.local and add any local zshrc configuration to the file
     - POWERLINE_ROOT 
 
-
 ## Git Work Config
-* Add any work specific config to a work machine in the ~/work/.gitconfig file
+* Add any work specific repos to a work directory, and include a .gitconfig file in this directory with the correct email to use
 
 ## Helpful Scripts
 * add_gitignore (agi) adds a standardized gitignore file to the current directory, pulled from github

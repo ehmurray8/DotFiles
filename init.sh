@@ -17,12 +17,10 @@ case "${unameOut}" in
 esac
 
 
-declare -a filesToLink=( ".bashrc" ".gitconfig" ".tmux.conf" ".vimrc" "add-gitignore" )
+declare -a filesToLink=( ".bashrc" ".gitconfig" ".tmux.conf" ".vimrc" "add-gitignore" ".zshrc" )
 
 if [ "$machine" = "Mac" ]; then
-    filesToLink[${#filesToLink[*]}]=$".macos"
     filesToLink[${#filesToLink[*]}]=$".tmux-osx.conf"
-    filesToLink[${#filesToLink[*]}]=$".zshrc"
     echo "Installing Homebrew..."
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     echo "Installing programs using brew..."
@@ -40,7 +38,8 @@ if [ "$machine" = "Mac" ]; then
     brew install nvim
     brew install the_silver_searcher
 elif [ "$machine" = "Linux" ]; then
-    filesToLink[${#filesToLink[*]}]=$".zshrc"
+    filesToLink[${#filesToLink[*]}]=$".Xmodmap"
+    filesToLink[${#filesToLink[*]}]=$".xinitrc"
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 

@@ -85,3 +85,7 @@ Install syntax highlighting plugin by running the following command:
 
 ## Git Work Config
 * Add any work specific config to a work machine in the ~/work/.gitconfig file
+
+## Helpful Scripts
+* add_gitignore (agi) adds a standardized gitignore file to the current directory, pulled from github
+* add_app script for creating linux desktop entries

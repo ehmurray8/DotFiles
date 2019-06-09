@@ -19,6 +19,8 @@ esac
 
 declare -a filesToLink=( ".bashrc" ".gitconfig" ".tmux.conf" ".vimrc" "add-gitignore" ".zshrc" )
 
+declare -a brewPrograms=( "tree" "tldr" "bat" "diff-so-fancy" "fd" "fzf" "sd" "cntlm" "node" "htop" "xcodegen" "mogenerator" "the_silver_searcher" "nvim")
+
 if [ "$machine" = "Mac" ]; then
     filesToLink[${#filesToLink[*]}]=$".tmux-osx.conf"
     echo "Installing Homebrew..."
@@ -33,10 +35,9 @@ if [ "$machine" = "Mac" ]; then
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-    brew install tree
-    brew install tmux
-    brew install nvim
-    brew install the_silver_searcher
+    for file in "${brewPrograms[@]}"; do
+        brew install $file
+    done
 elif [ "$machine" = "Linux" ]; then
     filesToLink[${#filesToLink[*]}]=$".Xmodmap"
     filesToLink[${#filesToLink[*]}]=$".xinitrc"

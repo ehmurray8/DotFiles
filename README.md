@@ -80,5 +80,8 @@ Install syntax highlighting plugin by running the following command:
 
 ## Local config
 * Create a file in ~ called .zshrc.local and add any local zshrc configuration to the file
-    - GIT_EMAIL
     - POWERLINE_ROOT 
+
+
+## Git Work Config
+* Add any work specific config to a work machine in the ~/work/.gitconfig file

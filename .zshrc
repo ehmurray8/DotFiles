@@ -12,8 +12,10 @@ function podRefresh {
     rm -rf Pods && rm -f Podfile.lock && pod install
 }
 
-
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+java_home_path="/usr/libexec/java_home"
+if [ -d "$java_home_path" ]; then
+    export JAVA_HOME=$(java_home_path -v 1.8)
+fi
 
 # Customize to your needs...
 function proxyOn {

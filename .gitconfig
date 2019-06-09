@@ -1,7 +1,9 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Emmet Murray
-	email = emmet.murray@etrade.com
+	email = ehmurray8@gmail.com
+[includeIf "gitdir:~/work/"]
+    path = ~/work/.gitconfig
 [push]
 	default = simple
 [credential]

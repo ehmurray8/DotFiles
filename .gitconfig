@@ -35,6 +35,7 @@
     untracked = cyan
 [core]
 	editor = vim
+	excludesfile = /Users/emurray/.gitignore_global
 [alias]
     al = ! git config --get-regexp alias | sd 'alias[\\.](\\S*)' '$1 =' | less
     a = add .
@@ -44,8 +45,8 @@
     cb = checkout -b
     ch = checkout HEAD
     cl = clone
-    cm = commit --message
-    clear = reset --hard HEAD cm = commit -m
+    clear = reset --hard HEAD
+    cm = commit -m
     co = checkout
     cof = ! git co $(fzf)
     d = diff

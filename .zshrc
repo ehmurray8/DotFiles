@@ -8,70 +8,48 @@ export FZF_CTRL_R_OPTS="--preview-window right:40% --preview 'echo {}'"
 export LANG=en_US.UTF-8
 
 
-case "${unameOut}" in
-    Linux*)     machine=Linux;;
-    Darwin*)    machine=Mac;;
-    CYGWIN*)    machine=Cygwin;;
-    MINGW*)     machine=MinGw;;
-    *)          machine="UNKNOWN:${unameOut}"
-esac
+function podRefresh {
+    rm -rf Pods && rm -f Podfile.lock && pod install
+}
 
-if [ $machine = "Mac" ]; then
-    export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-    # Customize to your needs...
-    function proxyOn {
-        # Using cntlm
-        export http_proxy="http://127.0.0.1:3128"
-        export HTTP_PROXY="http://127.0.0.1:3128"
-        export https_proxy="http://127.0.0.1:3128"
-        export HTTPS_PROXY="http://127.0.0.1:3128"
-        echo "Proxy tunnel enabled"
-    }
 
-    function proxyOff {
-        unset http_proxy
-        unset HTTP_PROXY
-        unset https_proxy
-        unset HTTPS_PROXY
-        echo "Proxy tunnel disabled"
-    }
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
-    function podRefresh {
-        rm -rf Pods && rm -f Podfile.lock && pod install
-    }
+# Customize to your needs...
+function proxyOn {
+    # Using cntlm
+    export http_proxy="http://127.0.0.1:3128"
+    export HTTP_PROXY="http://127.0.0.1:3128"
+    export https_proxy="http://127.0.0.1:3128"
+    export HTTPS_PROXY="http://127.0.0.1:3128"
+    echo "Proxy tunnel enabled"
+}
 
-    AIRPORT_CMD="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
-    WIFI_OFF=$($AIRPORT_CMD -I | grep 'AirPort: Off')
-    if [ ! -z "$WIFI_OFF" ]; then
-        proxyOn
+function proxyOff {
+    unset http_proxy
+    unset HTTP_PROXY
+    unset https_proxy
+    unset HTTPS_PROXY
+    echo "Proxy tunnel disabled"
+}
+
+export TERM="xterm-256color"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
+
+function xc() {
+    project_file=$(find -E . -maxdepth 2 -regex ".*\.(xcodeproj|xcworkspace)$" | \
+        grep -v "xcodeproj/project.xcworkspace" | \
+        grep -v Pods | \
+        sort -r | \
+        head -1)
+    if [ -z "$project_file" ]
+    then
+        echo "Couldn't find a workspace or a project to open."
     else
-        SSID=$($AIRPORT_CMD -I | awk '/ SSID/ {printf substr($0, index($0, $2))}')
-        if [ "$SSID" = $SSID_PROXY_NAME ]; then
-            proxyOn
-        fi;
-        unset SSID
-    fi;
-
-    unset WIFI_OFF
-    unset AIRPORT_CMD
-    export TERM="xterm-256color"
-    export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
-
-    function xc() {
-        project_file=$(find -E . -maxdepth 2 -regex ".*\.(xcodeproj|xcworkspace)$" | \
-            grep -v "xcodeproj/project.xcworkspace" | \
-            grep -v Pods | \
-            sort -r | \
-            head -1)
-        if [ -z "$project_file" ]
-        then
-            echo "Couldn't find a workspace or a project to open."
-        else
-            echo "Opening $project_file..."
-            open $project_file -a /Applications/Xcode.app
-        fi
-    }
-fi
+        echo "Opening $project_file..."
+        open $project_file -a /Applications/Xcode.app
+    fi
+}
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -136,7 +114,6 @@ alias tnew="tmux new -t"
 alias pping="prettyping --nolegend"
 alias preview="fzf --preview 'bat --color=\"always\" {}'"
 alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
-alias open="xdg-open"
 
 function mouseOn {
     sd -i "(set -g mouse (on|off))" "set -g mouse on" ~/.tmux.conf

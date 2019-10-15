@@ -10,30 +10,11 @@ export LANG=en_US.UTF-8
 
 function podRefresh {
     rm -rf Pods && rm -f Podfile.lock && pod install
-}
-
+} 
 java_home_path="/usr/libexec/java_home"
 if [ -d "$java_home_path" ]; then
     export JAVA_HOME=$(java_home_path -v 1.8)
 fi
-
-# Customize to your needs...
-function proxyOn {
-    # Using cntlm
-    export http_proxy="http://127.0.0.1:3128"
-    export HTTP_PROXY="http://127.0.0.1:3128"
-    export https_proxy="http://127.0.0.1:3128"
-    export HTTPS_PROXY="http://127.0.0.1:3128"
-    echo "Proxy tunnel enabled"
-}
-
-function proxyOff {
-    unset http_proxy
-    unset HTTP_PROXY
-    unset https_proxy
-    unset HTTPS_PROXY
-    echo "Proxy tunnel disabled"
-}
 
 export TERM="xterm-256color"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
@@ -55,9 +36,9 @@ function xc() {
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
- HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
- ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -134,6 +115,3 @@ function mouseOff {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source ~/.zshrc.local
-
-$(git config --global user.email $GIT_EMAIL)
-

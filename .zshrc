@@ -10,11 +10,7 @@ export LANG=en_US.UTF-8
 
 function podRefresh {
     rm -rf Pods && rm -f Podfile.lock && pod install
-} 
-java_home_path="/usr/libexec/java_home"
-if [ -d "$java_home_path" ]; then
-    export JAVA_HOME=$(java_home_path -v 1.8)
-fi
+}
 
 export TERM="xterm-256color"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'

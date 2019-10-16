@@ -81,6 +81,7 @@ Install syntax highlighting plugin by running the following command:
 ## Local config
 * Create a file in ~ called .zshrc.local and add any local zshrc configuration to the file
     - POWERLINE_ROOT 
+    - java_home
 
 ## Git Work Config
 * Add any work specific repos to a work directory, and include a .gitconfig file in this directory with the correct email to use

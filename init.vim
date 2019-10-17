@@ -2,6 +2,9 @@ set nocompatible    " not compatible with vi filetype indent on
 
 set syntax=on
 
+set foldmethod=syntax
+set nofoldenable
+
 set number          " line numbers
 set tabstop=4       " 4 spaces for tabs
 set shiftwidth=4    " 4 spaces when using ==, <<, >> set softtabstop=4   " 4 spaces in tab when editing

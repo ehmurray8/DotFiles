@@ -1,0 +1,12 @@
+#!/bin/bash
+
+python -m json.tool < $1 > temp.json
+nvim temp.json
+
+if echo $* | grep -e "-s" -q 
+then
+    rm $1
+    touch $1
+    cat temp.json > $1
+fi
+rm temp.json

@@ -1,6 +1,9 @@
 set nocompatible    " not compatible with vi
 filetype indent on  " load language specific indents
 
+set foldmethod=syntax
+set nofoldenable
+
 set number          " line numbers
 set tabstop=4       " 4 spaces for tabs
 set shiftwidth=4    " 4 spaces when using ==, <<, >>

@@ -1,38 +1,45 @@
-declare -a filesToLink=( ".bashrc" ".gitconfig" ".tmux.conf" ".vimrc" "add-gitignore" ".zshrc" )
+declare -a filesToLink=( ".bashrc" ".gitconfig" ".tmux.conf" ".vimrc" "add-gitignore" ".zshrc" "jsonviewer" "prettyping" )
+
+replaceFile() {
+    rm "$HOME/$file"
+    linkFile
+}
+
+linkFile() {
+    ln -s "$PWD/$file" "$HOME/$file"
+}
 
 
-replaceFile=false
+replaceAllFiles=false
 for file in "${filesToLink[@]}"; do
-    echo $file
     if [ -e "$HOME/$file" ]; then
-        if [ "$replaceFile" = true ]; then
-            rm "$HOME/$file"
+        if [ "$replaceAllFiles" = true ]; then
+            replaceFile
         else
             checking=true
             while [ "$checking" = true ]; do
                 read -p "Replace $file (Y/N/A) " prompt
                 if [ "$prompt" = "Y" ] || [ "$prompt" = "y" ]; then
                     checking=false
-                    rm "$HOME/$file"
-                    ln -s "$PWD/$file" "$HOME/$file"
+                    replaceFile
                 elif [ "$prompt" = "N" ] || [ "$prompt" = "n" ]; then
                     checking=false
                 elif [ "$prompt" = "A" ] || [ "$prompt" = "a" ]; then
                     checking=false
-                    replaceFile=true	
+                    replaceAllFiles=true
+                    replaceFile
                 fi
             done
         fi
     else
-        touch "$HOME/$file"
-        ln -s "$PWD/$file" "$HOME/$file"
+        linkFile
     fi
 done
 
 nvimFile="$HOME/.config/nvim/init.vim"
 mkdir -p "$HOME/.config/nvim/"
 if [ -e "$nvimFile" ]; then
-    if [ replaceFile = true ]; then
+    if [ replaceAllFiles = true ]; then
         rm "$nvimFile"
         ln -s "$PWD/init.vim" "$nvimFile"
     else

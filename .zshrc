@@ -105,10 +105,6 @@ function mouseOff {
     tmux source-file ~/.tmux.conf
 }
 
-
-# added by travis gem
-[ -f /home/emmet/.travis/travis.sh ] && source /home/emmet/.travis/travis.sh
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source ~/.zshrc.local

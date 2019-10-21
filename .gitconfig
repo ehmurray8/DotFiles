@@ -4,6 +4,8 @@
 	email = ehmurray8@gmail.com
 [includeIf "gitdir:work/"]
     path = ~/work/.gitconfig
+[includeIf "gitdir:workplace"]
+    path = ~/workplace/.gitconfig
 [push]
 	default = simple
 [credential]

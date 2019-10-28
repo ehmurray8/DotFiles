@@ -36,8 +36,8 @@
     changed = yellow
     untracked = cyan
 [core]
-	editor = vim
-	excludesfile = /Users/emurray/.gitignore_global
+	editor = nvim
+	excludesfile = ~/.gitignore_global
 [alias]
     al = ! git config --get-regexp alias | sd 'alias[\\.](\\S*)' '$1 =' | less
     a = add .

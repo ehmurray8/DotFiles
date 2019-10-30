@@ -90,6 +90,7 @@ alias xvim="open -a /Applications/Xcode+Vim.app"
 alias t='tmux'
 alias tkill="tmux kill-session -t"
 alias tnew="tmux new -t"
+alias tattach="tmux attach-session -t"
 alias pping="~/prettyping --nolegend"
 alias preview="fzf --preview 'bat --color=\"always\" {}'"
 alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"

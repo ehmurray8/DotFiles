@@ -9,7 +9,6 @@ linkFile() {
     ln -s "$PWD/$file" "$HOME/$file"
 }
 
-
 replaceAllFiles=false
 for file in "${filesToLink[@]}"; do
     if [ -e "$HOME/$file" ]; then

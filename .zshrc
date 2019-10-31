@@ -97,7 +97,7 @@ alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 alias jv="~/jsonviewer"
 
 function mouseOn {
-    sd -i "(set -g mouse (on|off))" "set -g mouse on" ~/.tmux.conf
+    sd "(set -g mouse (on|off))" "set -g mouse on" ~/.tmux.conf
     tmux source-file ~/.tmux.conf
 }
 

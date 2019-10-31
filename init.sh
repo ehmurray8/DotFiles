@@ -26,4 +26,7 @@ source init-scripts/init.link-files.sh
 
 if [ "$machine" = "Mac" ] || [ "$machine" = "Linux" ] ; then
     source init-scripts/init.oh-my-zsh.sh
+    curl https://sh.rustup.rs -sSf | sh
+    source $HOME/.cargo/env
+    cargo install sd
 fi

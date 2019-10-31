@@ -34,11 +34,6 @@ Dot files for use on Mac and Linux machines. Run the init.sh script to setup def
 * Fuzzy finder for finding files, autocomplete, history search, and more
 `fzf - https://github.com/junegunn/fzf`
 
-* Status line
-`powerline - https://github.com/powerline/powerline`
-    - install using pip, and then set POWERLINE_ROOT directory
-    - link the default.json file to $POWERLINE_ROOT/powerline/config_files/themes/tmux/default.json
-
 * Interactive system resource diagnostic tool
 `htop - https://github.com/hishamhm/htop`
 
@@ -88,3 +83,4 @@ Install syntax highlighting plugin by running the following command:
 ## Helpful Scripts
 * add_gitignore (agi) adds a standardized gitignore file to the current directory, pulled from github
 * add_app script for creating linux desktop entries
+* jsonviewer script for prettifying json

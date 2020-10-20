@@ -80,6 +80,10 @@ Install syntax highlighting plugin by running the following command:
 ## Git Work Config
 * Add any work specific repos to a work directory, and include a .gitconfig file in this directory with the correct email to use
 
+## Deoplete issue
+`pip3 install neovim --user`
+https://github.com/Shougo/deoplete.nvim/issues/550
+
 ## Helpful Scripts
 * add_gitignore (agi) adds a standardized gitignore file to the current directory, pulled from github
 * add_app script for creating linux desktop entries

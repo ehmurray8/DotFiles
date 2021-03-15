@@ -1,4 +1,4 @@
-declare -a filesToLink=( ".bashrc" ".gitconfig" ".tmux.conf" ".vimrc" "add-gitignore" ".zshrc" "jsonviewer" "prettyping" )
+declare -a filesToLink=( ".bashrc" ".gitconfig" ".tmux.conf" ".vimrc" "add-gitignore" ".zshrc" "jsonviewer" "prettyping" ".p10k.zsh" )
 
 replaceFile() {
     rm "$HOME/$file"
@@ -56,4 +56,26 @@ if [ -e "$nvimFile" ]; then
     fi
 else
     ln -s "$PWD/init.vim" "$nvimFile"
+fi
+
+cocSettingsFile="$HOME/.config/nvim/coc-settings.json"
+if [ -e "$nvimFile" ]; then
+    if [ replaceAllFiles = true ]; then
+        rm "$coc"
+        ln -s "$PWD/coc-settings.json" "$nvimFile"
+    else
+        checking=true
+        while [ checking = true ]; do
+            read -p "Replace $cocSettingsFile (Y/N) " prompt
+            if [ prompt = "Y" ] || [ prompt = "y" ]; then
+                rm "$cocSettingsFile"
+                ln -s "$PWD/coc-settings.json" "$cocSettingsFile"
+                checking = false
+            elif [ prompt = "N" ] || [ prompt = "n" ]; then
+                checking=false
+            fi
+        done
+    fi
+else
+    ln -s "$PWD/coc-settings.json.json" "$nvimFile"
 fi

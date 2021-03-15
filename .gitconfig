@@ -52,7 +52,6 @@
     clear = reset --hard HEAD
     cm = commit -m
     co = checkout
-    cof = ! git co $(fzf)
     d = diff
     dh = diff HEAD
     dhf = !git diff HEAD $(fzf)
@@ -62,6 +61,7 @@
     lgf = log -p -M --follow -- stat -- init.vim
     sh = show --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     m = merge
+    mt = mergetool
     ph = push
     pht = push --tags
     pl = pull
@@ -89,12 +89,19 @@
     showUntrackedFiles = all
 [format]
 	pretty = medium
-[pager]
-    diff = diff-so-fancy | less --tabs=1,5 -R
-    show = diff-so-fancy | less --tabs=1,5 -R
+; [pager]
+;     diff = nvimdiff | less --tabs=1,5 -R
+;     show = nvimdiff | less --tabs=1,5 -R
 [help]
 	autoCorrect = -1
+[difftool]
+    prompt = true
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [merge]
 	stat = true
-	tool = vimdiff
+	tool = nvimdiff
 	conflictstyle = diff3
+    keepBackup = false

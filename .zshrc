@@ -1,4 +1,11 @@
-export PATH=$HOME/.cargo/bin:$HOME/bin:/usr/local/bin:$PATH
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+export PATH=$HOME/.cargo/bin:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 export PROMPT_COMMAND="history -a; history -n"
 
 # FZF Config
@@ -7,28 +14,8 @@ export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_CTRL_R_OPTS="--preview-window right:40% --preview 'echo {}'"
 export LANG=en_US.UTF-8
 
-
-function podRefresh {
-    rm -rf Pods && rm -f Podfile.lock && pod install
-}
-
 export TERM="xterm-256color"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
-
-function xc() {
-    project_file=$(find -E . -maxdepth 2 -regex ".*\.(xcodeproj|xcworkspace)$" | \
-        grep -v "xcodeproj/project.xcworkspace" | \
-        grep -v Pods | \
-        sort -r | \
-        head -1)
-    if [ -z "$project_file" ]
-    then
-        echo "Couldn't find a workspace or a project to open."
-    else
-        echo "Opening $project_file..."
-        open $project_file -a /Applications/Xcode.app
-    fi
-}
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -49,8 +36,15 @@ COMPLETION_WAITING_DOTS="true"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
+# https://unix.stackexchange.com/questions/273861/unlimited-history-in-zsh
+export HISTSIZE=100000
+export HISTFILE="$HOME/.history"
+export SAVEHIST=$HISTSIZE
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+
 # OH-MY-ZSH Config
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
     git
     vi-mode
@@ -68,10 +62,6 @@ source $ZSH/oh-my-zsh.sh
 
 unsetopt beep
 set visualbell
-
-prompt_dir() {
-    prompt_segment blue black "${PWD##*/}"
-}
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
@@ -109,3 +99,6 @@ function mouseOff {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source ~/.zshrc.local
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

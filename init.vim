@@ -19,7 +19,9 @@ set noswapfile      " no swp files
 
 set autoread        " when a file has changed on disk, automatically load it
 
-set undofile        " History mainained after closing file
+" This was causing errors
+" https://www.reddit.com/r/neovim/comments/lxu7p3/error_incompatible_undo_file_whenever_i_open_a/
+" set undofile        " History mainained after closing file
 
 set ignorecase      " case insensitive search
 set smartcase       " case sensitive search if there are uppercase letters

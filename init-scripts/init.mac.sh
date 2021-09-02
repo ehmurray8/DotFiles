@@ -6,12 +6,14 @@ echo "Installing Homebrew..."
 echo "Installing programs using brew..."
 brew bundle
 
+echo "Installing fonts from brew..."
 brew tap homebrew/cask-fonts
-brew cask install font-anonymous-nerd-font
+brew install --cask font-hack-nerd-font
     
 echo "Setting up Mac defaults..."    
 ./.macos
 
+echo "Setting up Vim Plug..."
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 

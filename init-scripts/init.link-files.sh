@@ -59,7 +59,7 @@ else
 fi
 
 cocSettingsFile="$HOME/.config/nvim/coc-settings.json"
-if [ -e "$nvimFile" ]; then
+if [ -e "$cocSettingsFile" ]; then
     if [ replaceAllFiles = true ]; then
         rm "$cocSettingsFile"
         ln -s "$PWD/coc-settings.json" "$cocSettingsFile"

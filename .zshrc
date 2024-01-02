@@ -73,26 +73,11 @@ export NVM_DIR="$HOME/.nvm"
 alias v='nvim'
 alias agi='~/add-gitignore'
 alias g='git'
-alias ddd="rm -Rf $HOME/Library/Developer/Xcode/DerivedData/*"
-alias xvim="open -a /Applications/Xcode+Vim.app"
-alias t='tmux'
 alias tkill="tmux kill-session -t"
 alias tnew="tmux new -t"
 alias tattach="tmux attach-session -t"
 alias pping="~/prettyping --nolegend"
 alias preview="fzf --preview 'bat --color=\"always\" {}'"
-alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
-alias jv="~/jsonviewer"
-
-function mouseOn {
-    sd "(set -g mouse (on|off))" "set -g mouse on" ~/.tmux.conf
-    tmux source-file ~/.tmux.conf
-}
-
-function mouseOff {
-    sd -i "(set -g mouse (on|off))" "set -g mouse off" ~/.tmux.conf
-    tmux source-file ~/.tmux.conf
-}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH=$HOME/.cargo/bin:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
+export PATH=$HOME/.cargo/bin:$HOME/bin:/usr/local/bin:$HOME/.local/bin:/Users/emmet/work/mayer/istio-1.15.0-beta.1/bin:$PATH
 export PROMPT_COMMAND="history -a; history -n"
 
 # FZF Config
@@ -20,8 +20,6 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
-
-ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -102,3 +100,20 @@ source ~/.zshrc.local
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+alias localstack-wipe="rm -r docker/localstack/zipfile* && rm -r docker/localstack/data && docker-wipe"
+alias awslocal="AWS_ACCESS_KEY_ID=test AWS_SECRET_ACCESS_KEY=test aws --endpoint-url=http://localhost:4566"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/emmet/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/emmet/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/emmet/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/emmet/google-cloud-sdk/completion.zsh.inc'; fi
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# bun completions
+[ -s "/Users/emmet/.bun/_bun" ] && source "/Users/emmet/.bun/_bun"

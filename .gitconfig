@@ -1,15 +1,15 @@
 # This is Git's per-user configuration file.
 [user]
-	name = Emmet Murray
-	email = ehmurray8@gmail.com
+    name = Emmet Murray
+    email = ehmurray8@gmail.com
 [includeIf "gitdir:work/"]
     path = ~/work/.gitconfig
 [includeIf "gitdir:workplace"]
     path = ~/workplace/.gitconfig
 [push]
-	default = simple
+    default = simple
 [credential]
-	helper = cache --timeout=7200
+    helper = cache --timeout=7200
 [color]
     branch = true
     interactive = true
@@ -22,14 +22,14 @@
     local = yellow
     remote = green 
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
     new = green bold
     whitespace = red reverse
     commit = yellow bold
 [color "diff-highlight"]
-	oldNormal = red bold
+    oldNormal = red bold
     oldHighlight = red bold 52
     newNormal = green bold
     oldHighlight = green bold 22
@@ -38,8 +38,8 @@
     changed = yellow
     untracked = cyan
 [core]
-	editor = nvim
-	excludesfile = ~/.gitignore_global
+    editor = nvim
+    excludesfile = ~/.gitignore_global
 [alias]
     al = ! git config --get-regexp alias | sd 'alias[\\.](\\S*)' '$1 =' | less
     a = add .
@@ -65,7 +65,7 @@
     ph = push
     pht = push --tags
     pl = pull
-    pup = push --set-upstream origin 
+    pup = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\""
     rb = rebase
     rbc = rebase --continue
     rba = rebase --abort
@@ -88,12 +88,12 @@
 [status]
     showUntrackedFiles = all
 [format]
-	pretty = medium
+    pretty = medium
 ; [pager]
 ;     diff = nvimdiff | less --tabs=1,5 -R
 ;     show = nvimdiff | less --tabs=1,5 -R
 [help]
-	autoCorrect = -1
+    autoCorrect = -1
 [difftool]
     prompt = true
 [diff]
@@ -101,7 +101,12 @@
 [difftool "nvimdiff"]
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [merge]
-	stat = true
-	tool = nvimdiff
-	conflictstyle = diff3
+    stat = true
+    tool = nvimdiff
+    conflictstyle = diff3
     keepBackup = false
+[init]
+    defaultBranch = main
+[diff "lockb"]
+    textconv = bun
+    binary = true

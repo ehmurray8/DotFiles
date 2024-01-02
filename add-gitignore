@@ -5,7 +5,7 @@ if [ "$#" -gt 1 ]; then
 elif [ "$#" -lt 1 ]; then
     echo "Not enough parameters, correct usage '$0 <gitignore type>'"
 else
-    gitignore=$(curl -s https://raw.githubusercontent.com/github/gitignore/master/$1.gitignore)
+    gitignore=$(curl -s https://raw.githubusercontent.com/github/gitignore/main/$1.gitignore)
     if [ "$gitignore" == $'404: Not Found' ]; then
         echo "No .gitignore found for $1"
     else

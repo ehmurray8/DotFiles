@@ -66,7 +66,10 @@ Install syntax highlighting plugin by running the following command:
 `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`
 
 ## Tmux
- The tmux-dark-notify-theme.conf file must be placed at `~/.local/state/tmux/tmux-dark-notify-theme.conf`.
+The `tmux-dark-notify-theme.conf` file must be placed at `~/.local/state/tmux/tmux-dark-notify-theme.conf`. Don't create a symbolic link
+as tmux-dark-notify will be creating symbolic links.
+
+The `catppuccin.conf` and `catppuccin_light.conf` files must exist at `~/.tmux/plugins/tmux`.
 
 ## ETC
 * Nerd Fonts - https://github.com/ryanoasis/nerd-fonts

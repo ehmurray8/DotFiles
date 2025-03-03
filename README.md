@@ -72,6 +72,14 @@ as tmux-dark-notify will be creating symbolic links.
 The `./tmux-catppuccin/catppuccin.conf`, `./tmux-catppuccin/catppuccin_light.conf`, and `./tmux-catppuccin/catppuccin.tmux` 
 files must exist at `~/.tmux/plugins/tmux`.
 
+Add the following line as the second instruction to the `~/.tmux/plugins/tmux/catppuccin_tmux.conf` file, so the top looks like this:
+
+```
+source -F "#{d:current_file}/themes/catppuccin_#{@catppuccin_flavor}_tmux.conf"
+
+set -g window-style "bg=#{@thm_bg},fg=#{@thm_fg}"
+```
+
 ## ETC
 * Nerd Fonts - https://github.com/ryanoasis/nerd-fonts
 * Switch between nerdtree and file - C-wC-w

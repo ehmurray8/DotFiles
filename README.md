@@ -65,6 +65,8 @@ Dot files for use on Mac and Linux machines. Run the init.sh script to setup def
 Install syntax highlighting plugin by running the following command:
 `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`
 
+## Tmux
+ The tmux-dark-notify-theme.conf file must be placed at `~/.local/state/tmux/tmux-dark-notify-theme.conf`.
 
 ## ETC
 * Nerd Fonts - https://github.com/ryanoasis/nerd-fonts

@@ -1,10 +1,21 @@
 local ft = require("guard.filetype")
 local filetype = require("plenary.filetype")
 
-ft("lua"):fmt("lsp"):append("stylua"):lint("selene")
+local function is_executable(cmd)
+	return vim.fn.executable(cmd) == 1
+end
+
+if is_executable("lsp") and is_executable("stylua") and is_executable("selene") then
+    ft("lua"):fmt("lsp"):append("stylua"):lint("selene")
+end
+
 
 ft("typescript,javascript,typescriptreact,javascriptreact,vue,yaml"):fmt("prettier")
-ft("swift"):fmt("swiftformat")
+
+if is_executable("swiftformat") then
+    ft("swift"):fmt("swiftformat")
+end
+
 ft("json"):fmt({
 	cmd = "jq",
 	stdin = true,
@@ -14,32 +25,34 @@ ft("json"):fmt({
 	},
 })
 
-if filetype.detect_from_extension("swift") == "" then
-	filetype.add_table({
-		extension = {
-			["terraform"] = "terraform",
-			["alloy"] = "alloy",
-		},
-	})
+filetype.add_table({
+    extension = {
+        ["terraform"] = "terraform",
+        ["alloy"] = "alloy",
+    },
+})
+
+if is_executable("terraform") then
+    ft("terraform"):fmt({
+        cmd = "terraform",
+        stdin = true,
+        args = {
+            "fmt",
+            "-",
+        },
+    })
 end
 
-ft("terraform"):fmt({
-	cmd = "terraform",
-	stdin = true,
-	args = {
-		"fmt",
-		"-",
-	},
-})
-
-ft("alloy"):fmt({
-	cmd = "alloy",
-	stdin = true,
-	args = {
-		"fmt",
-		"-",
-	},
-})
+if is_executable("alloy") then
+    ft("alloy"):fmt({
+        cmd = "alloy",
+        stdin = true,
+        args = {
+            "fmt",
+            "-",
+        },
+    })
+end
 
 ft("python"):fmt("black"):lint("pylint")
 

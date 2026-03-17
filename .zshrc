@@ -93,3 +93,7 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 
 # bun completions
 [ -s "/Users/emmet/.bun/_bun" ] && source "/Users/emmet/.bun/_bun"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

@@ -1,9 +1,38 @@
 require("mason").setup({})
+
 require("kotlin").setup({
 	inlay_hints = {
 		enabled = true,
 	},
+	-- Add this to pass options to the underlying LSP client
+	lspconfig = {
+		-- Increase the timeout for the initial handshake
+		init_options = {
+			storagePath = vim.fn.stdpath("cache") .. "/kotlin-lsp",
+		},
+		flags = {
+			-- This prevents Neovim from spamming the "heavy" Kotlin server
+			debounce_text_changes = 500,
+		},
+	},
+	settings = {
+		kotlin = {
+			imports = {
+				importAliasCount = 99,
+				starImportLimit = 99,
+			},
+		},
+	},
 })
+
+vim.lsp.handlers["textDocument/completion"] = function(err, result, ctx, config)
+	return vim.lsp.handlers.on_completion(err, result, ctx, config)
+end
+
+local original_request = vim.lsp.buf_request
+vim.lsp.buf_request = function(bufnr, method, params, handler)
+	return original_request(bufnr, method, params, handler)
+end
 
 -- https://www.reddit.com/r/neovim/comments/1mbk9sk/comment/n5tougl/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1
 require("mason-lspconfig").setup({
@@ -169,6 +198,9 @@ vim.lsp.config("*", {
 local cmp = require("cmp")
 
 cmp.setup({
+	performance = {
+		fetching_timeout = 2000, -- Increase the time cmp waits for a response
+	},
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "buffer" },
@@ -251,6 +283,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("i", "<C-h>", function()
 			vim.lsp.buf.signature_help()
 		end, { buffer = bufnr, remap = false, desc = "Signature help" })
+		vim.keymap.set("n", "<leader>oi", function()
+			vim.lsp.buf.code_action({
+				context = { only = { "source.organizeImports" }, diagnostics = {} },
+				apply = true,
+			})
+		end, { buffer = event.buf, desc = "Optimize Imports" })
 
 		-- local client = vim.lsp.get_client_by_id(event.data.client_id)
 		-- if client:supports_method("textDocument/completion") then
@@ -269,3 +307,4 @@ vim.lsp.enable("lua_ls")
 vim.lsp.enable("eslint")
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("sourcekit") -- swift
+vim.lsp.enable("kotlin")

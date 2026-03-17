@@ -110,3 +110,5 @@
 [diff "lockb"]
     textconv = bun
     binary = true
+[pull]
+	rebase = true

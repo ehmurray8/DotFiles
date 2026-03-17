@@ -60,26 +60,6 @@ Dot files for use on Mac and Linux machines. Run the init.sh script to setup def
 * vim - https://statico.github.io/vim3.html
 * cli - https://remysharp.com/2018/08/23/cli-improved
 
-
-## Zsh
-Install syntax highlighting plugin by running the following command:
-`git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`
-
-## Tmux
-The `./tmux-catppuccin/tmux-dark-notify-theme.conf` file must be placed at `~/.local/state/tmux/tmux-dark-notify-theme.conf`. Don't create a symbolic link
-as tmux-dark-notify will be creating symbolic links.
-
-The `./tmux-catppuccin/catppuccin.conf`, `./tmux-catppuccin/catppuccin_light.conf`, and `./tmux-catppuccin/catppuccin.tmux` 
-files must exist at `~/.tmux/plugins/tmux`.
-
-Add the following line as the second instruction to the `~/.tmux/plugins/tmux/catppuccin_tmux.conf` file, so the top looks like this:
-
-```
-source -F "#{d:current_file}/themes/catppuccin_#{@catppuccin_flavor}_tmux.conf"
-
-set -g window-style "bg=#{@thm_bg},fg=#{@thm_fg}"
-```
-
 ## ETC
 * Nerd Fonts - https://github.com/ryanoasis/nerd-fonts
 * Switch between nerdtree and file - C-wC-w

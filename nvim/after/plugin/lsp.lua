@@ -12,7 +12,7 @@ require("kotlin").setup({
 		},
 		flags = {
 			-- This prevents Neovim from spamming the "heavy" Kotlin server
-			debounce_text_changes = 500,
+			debounce_text_changes = 200,
 		},
 	},
 	settings = {

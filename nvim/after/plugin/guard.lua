@@ -77,7 +77,8 @@ if is_executable("alloy") then
 	})
 end
 
-ft("python"):fmt("black"):lint("pylint")
+-- Using ruff lsp for now
+-- ft("python"):fmt("black"):lint("pylint")
 
 if is_executable("ktlint") and is_executable("detekt") then
     ft("kotlin"):fmt("ktlint"):lint("detekt")

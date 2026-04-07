@@ -152,6 +152,36 @@ vim.lsp.config("vue_ls", {
 	end,
 })
 
+vim.lsp.config("pyright", {
+	settings = {
+		pyright = {
+			-- Use ruff import organizer
+			disableOrganizeImports = true,
+		},
+		-- python = {
+		-- 	analysis = {
+		-- 		-- Exclusively use ruff for linting
+		-- 		ignore = { "*" },
+		-- 	},
+		-- },
+	},
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client == nil then
+			return
+		end
+		if client.name == "ruff" then
+			-- Disable hover in favor of Pyright
+			client.server_capabilities.hoverProvider = false
+		end
+	end,
+	desc = "LSP: Disable hover capability from Ruff",
+})
+
 vim.lsp.config("lua_ls", {
 	on_init = function(client)
 		if client.workspace_folders then
@@ -308,3 +338,5 @@ vim.lsp.enable("eslint")
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("sourcekit") -- swift
 vim.lsp.enable("kotlin")
+vim.lsp.enable("ruff")
+vim.lsp.enable("pyright")

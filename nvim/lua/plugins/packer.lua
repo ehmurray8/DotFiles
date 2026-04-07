@@ -22,6 +22,7 @@ return require("packer").startup(function(use)
 	-- Abstract syntax tree support
 	use({
 		"nvim-treesitter/nvim-treesitter",
+        branch = "main",
 		run = ":TSUpdate",
 	})
 	-- Git plugin, use :Git

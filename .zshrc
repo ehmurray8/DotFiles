@@ -88,9 +88,6 @@ eval "$(jenv init -)"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-
 # bun completions
 [ -s "/Users/emmet/.bun/_bun" ] && source "/Users/emmet/.bun/_bun"
 

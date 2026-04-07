@@ -31,6 +31,8 @@ if is_executable("stylua") and is_executable("selene") then
 	})
 end
 
+ft("xml"):fmt("xmllint")
+
 ft("typescript,javascript,typescriptreact,javascriptreact,vue,yaml,css,html,yaml,markdown"):fmt("prettier")
 
 if is_executable("swiftformat") then

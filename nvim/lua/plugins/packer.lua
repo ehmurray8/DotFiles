@@ -10,8 +10,11 @@ return require("packer").startup(function(use)
 	-- Fuzzy finder
 	use({
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.x",
-		requires = { { "nvim-lua/plenary.nvim" } },
+        version="*",
+		requires = {
+            { "nvim-lua/plenary.nvim" },
+            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+        },
 	})
 	-- Colorscheme
 	use("navarasu/onedark.nvim")

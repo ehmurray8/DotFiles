@@ -78,7 +78,10 @@ if is_executable("alloy") then
 end
 
 ft("python"):fmt("black"):lint("pylint")
-ft("kotlin"):fmt("ktlint"):lint("detekt")
+
+if is_executable("ktlint") and is_executable("detekt") then
+    ft("kotlin"):fmt("ktlint"):lint("detekt")
+end
 
 -- NB: this does not work with formatters
 ft("*"):lint("codespell")

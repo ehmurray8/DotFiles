@@ -84,6 +84,10 @@ alias tattach="tmux attach-session -t"
 alias pping="~/prettyping --nolegend"
 alias preview="fzf --preview 'bat --color=\"always\" {}'"
 
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source ~/.zshrc.local

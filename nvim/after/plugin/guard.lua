@@ -84,7 +84,9 @@ if is_executable("ktlint") and is_executable("detekt") then
     ft("kotlin"):fmt("ktlint"):lint("detekt")
 end
 
-ft("dart"):fmt("dart")
+if is_executable("dart") then
+    ft("dart"):fmt("dart")
+end
 
 -- NB: this does not work with formatters
 ft("*"):lint("codespell")

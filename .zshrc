@@ -59,6 +59,14 @@ ZSH_DISABLE_COMPFIX="true"
 
 source $ZSH/oh-my-zsh.sh
 
+if command -v uv >/dev/null 2>&1; then
+  eval "$(uv generate-shell-completion zsh)"
+fi
+
+if command -v uvx >/dev/null 2>&1; then
+  eval "$(uvx --generate-shell-completion zsh)"
+fi
+
 unsetopt beep
 set visualbell
 
@@ -107,3 +115,7 @@ export ANDROID_HOME=~/Library/Android/sdk
 if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
 
 export EDITOR=nvim
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

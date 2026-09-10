@@ -1,0 +1,42 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": ["opencode-gitlab-plugin"],
+  "permission": {
+    "bash": {
+      "*": "ask",
+      "git *": "allow",
+      "git add*": "ask",
+      "git restore*": "ask",
+      "git stash*": "ask",
+      "git clean*": "deny",
+      "git commit*": "deny",
+      "git amend*": "deny",
+      "git rebase*": "deny",
+      "git cherry-pick*": "deny",
+      "git revert*": "deny",
+      "git reset*": "deny",
+      "git checkout*": "ask",
+      "git switch*": "ask",
+      "git branch -d*": "deny",
+      "git branch -D*": "deny",
+      "git merge*": "deny",
+      "git push*": "deny",
+      "git pull*": "ask",
+      "git clone*": "ask",
+      "git remote add*": "deny",
+      "git remote remove*": "deny",
+      "git remote set-url*": "deny",
+      "git tag*": "deny",
+      "glab *": "ask",
+      "glab mr list*": "allow",
+      "glab mr view*": "allow",
+      "glab mr create*": "ask",
+      "glab mr update*": "ask",
+      "glab mr merge*": "ask",
+      "grep *": "allow",
+      "rg *": "allow",
+      "npm *": "allow",
+      "rm *": "deny"
+    }
+  }
+}

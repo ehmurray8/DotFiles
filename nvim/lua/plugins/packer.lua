@@ -17,7 +17,6 @@ return require("packer").startup(function(use)
 		},
 	})
 	-- Colorscheme
-	use("navarasu/onedark.nvim")
 	use("folke/tokyonight.nvim")
 	-- Abstract syntax tree support
 	use({
@@ -43,11 +42,6 @@ return require("packer").startup(function(use)
 			"L3MON4D3/LuaSnip",
 		},
 	})
-
-	-- use({
-	--     "saghen/blink.cmp",
-	--     dependencies = { 'rafamadriz/friendly-snippets' },
-	-- })
 
 	-- Shows next available keys
 	use("folke/which-key.nvim")

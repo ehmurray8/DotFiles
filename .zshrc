@@ -94,3 +94,16 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/emmet/projects/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/emmet/projects/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/emmet/projects/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/emmet/projects/google-cloud-sdk/completion.zsh.inc'; fi
+
+export ANDROID_HOME=~/Library/Android/sdk
+if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
+
+export EDITOR=nvim

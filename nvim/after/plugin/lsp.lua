@@ -1,5 +1,13 @@
 require("mason").setup({})
 
+
+require("flutter-tools").setup {
+    fvm = true,
+    widget_guides = {
+        enabled = true,
+    }
+}
+
 require("kotlin").setup({
 	inlay_hints = {
 		enabled = true,
@@ -319,6 +327,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				apply = true,
 			})
 		end, { buffer = event.buf, desc = "Optimize Imports" })
+
+        vim.keymap.set("n", "<leader>ff", function()
+            require("telescope").extensions.flutter.commands()
+        end, {buffer = bufnr, remap = false, desc = "Open flutter commands"})
 
 		-- local client = vim.lsp.get_client_by_id(event.data.client_id)
 		-- if client:supports_method("textDocument/completion") then

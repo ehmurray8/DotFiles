@@ -231,3 +231,6 @@ vim.keymap.set("n", "<leader>xdT", xcodebuild.debug_class_tests, { desc = "Debug
 vim.keymap.set("n", "<leader>xb", xcodebuild.toggle_breakpoint, { desc = "Toggle Breakpoint" })
 vim.keymap.set("n", "<leader>xB", xcodebuild.toggle_message_breakpoint, { desc = "Toggle Message Breakpoint" })
 vim.keymap.set("n", "<leader>xdx", xcodebuild.terminate_session, { desc = "Terminate Debugger" })
+vim.keymap.set("n", "<leader>z", function()
+  require("maximize").toggle()
+end, { desc = "Toggle window zoom" })

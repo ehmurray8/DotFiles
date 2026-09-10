@@ -39,3 +39,6 @@ vim.opt.updatetime = 50
 
 -- Show a color column at 120 characters
 vim.opt.colorcolumn = "120"
+
+-- Setup exrc to load local config from .nvim.lua files
+vim.o.exrc = true

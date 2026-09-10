@@ -10,11 +10,11 @@ return require("packer").startup(function(use)
 	-- Fuzzy finder
 	use({
 		"nvim-telescope/telescope.nvim",
-        version="*",
+		version = "*",
 		requires = {
-            { "nvim-lua/plenary.nvim" },
-            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-        },
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		},
 	})
 	-- Colorscheme
 	use("navarasu/onedark.nvim")
@@ -22,11 +22,12 @@ return require("packer").startup(function(use)
 	-- Abstract syntax tree support
 	use({
 		"nvim-treesitter/nvim-treesitter",
-        branch = "main",
+		branch = "main",
 		run = ":TSUpdate",
 	})
 	-- Git plugin, use :Git
 	use("tpope/vim-fugitive")
+
 	-- :Gbrowse pulls up current file in Github
 	use("tpope/vim-rhubarb")
 	-- Sets up LSP, autocompletion, and mason lsp manager
@@ -81,7 +82,7 @@ return require("packer").startup(function(use)
 			"nvim-lua/plenary.nvim",
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-treesitter/nvim-treesitter",
-            "nvim-neotest/neotest-python",
+			"nvim-neotest/neotest-python",
 			"ehmurray8/neotest-swift",
 		},
 	})
@@ -121,4 +122,35 @@ return require("packer").startup(function(use)
 	use("Bishop-Fox/colorblocks.nvim")
 
 	use("AlexandrosAlexiou/kotlin.nvim")
+
+	use({
+		"nvim-flutter/flutter-tools.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"stevearc/dressing.nvim",
+		},
+	})
+
+	use({
+		"yousefhadder/markdown-plus.nvim",
+		ft = "markdown",
+		config = function()
+			require("markdown-plus").setup()
+		end,
+	})
+
+	use({
+		"MeanderingProgrammer/render-markdown.nvim",
+		after = { "nvim-treesitter" },
+		requires = { "nvim-tree/nvim-web-devicons", opt = true },
+		config = function()
+			require("render-markdown").setup({})
+		end,
+	})
+	use({
+		"declancm/maximize.nvim",
+		config = function()
+			require("maximize").setup()
+		end,
+	})
 end)

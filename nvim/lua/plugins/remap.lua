@@ -107,7 +107,7 @@ vim.api.nvim_create_user_command("DAPUI", function()
 end, { desc = "Open DAPUI" })
 
 -- Insert mode: <Leader>cu inserts a trimmed UUID
-vim.keymap.set("i", "<Leader>cu", function()
+vim.keymap.set("n", "<Leader>cu", function()
   return string.lower(vim.fn.trim(vim.fn.system("uuidgen")))
 end, { expr = true, desc = "Insert UUID (insert mode)" })
 

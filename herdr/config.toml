@@ -1,0 +1,79 @@
+# Symlink to: ~/.config/herdr/config.toml
+
+onboarding = false
+
+[keys]
+prefix = "ctrl+a"
+
+# Workspace navigation
+workspace_picker = "prefix+w"
+goto = "prefix+g"
+navigate_workspace_up = ["up", "ctrl+p"]
+navigate_workspace_down = ["down", "ctrl+n"]
+new_workspace = "prefix+shift+n"
+rename_workspace = "prefix+shift+4" # Ctrl-a + $
+close_workspace = "prefix+q"
+
+# Session control
+detach = "prefix+d"
+
+# Tabs
+new_tab = "prefix+c"
+switch_tab = "prefix+1..9"
+close_tab = "prefix+x"
+previous_tab = "prefix+p"
+next_tab = "prefix+n"
+rename_tab = "prefix+shift+t"
+
+# Panes
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+right"
+split_vertical = "prefix+|"
+split_horizontal = "prefix+minus"
+resize_mode = "prefix+r"
+copy_mode = "prefix+["
+zoom = "prefix+z"
+close_pane = "prefix+shift+x"
+
+# Configuration and navigation
+reload_config = "prefix+shift+r"
+cycle_pane_previous = "prefix+shift+tab"
+cycle_pane_next = "prefix+tab"
+
+[[keys.command]]
+key = "prefix+f"
+type = "plugin_action"
+command = "sessionizer.open"
+description = "open project workspace"
+
+[[keys.command]]
+key = "ctrl+f"
+type = "plugin_action"
+command = "dotfiles.workspace-picker.open-workspace"
+description = "open workspace picker"
+
+[[keys.command]]
+key = "prefix+s"
+type = "plugin_action"
+command = "dotfiles.workspace-picker.open-collapsed"
+description = "open compact workspace picker"
+
+[[keys.command]]
+key = "prefix+l"
+type = "plugin_action"
+command = "dotfiles.last-workspace.toggle"
+description = "switch to last workspace"
+
+[theme]
+name = "terminal"
+
+[ui]
+mouse_capture = true
+
+[advanced]
+scrollback_limit_bytes = 1600000
+
+[ui.toast]
+delivery = "system"

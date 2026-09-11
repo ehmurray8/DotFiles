@@ -83,6 +83,10 @@ alias tnew="tmux new -t"
 alias tattach="tmux attach-session -t"
 alias pping="~/prettyping --nolegend"
 alias preview="fzf --preview 'bat --color=\"always\" {}'"
+alias ls='eza -lh --group-directories-first --icons --hyperlink'
+alias lsa='ls -a'
+alias lt='eza --tree --level=2 --long --icons --git'
+alias lta='lt -a'
 
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
@@ -95,17 +99,23 @@ source ~/.zshrc.local
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+export PATH="$HOME/.jenv/bin:$HOME/.jenv/shims:$PATH"
+if (( $+commands[jenv] )); then
+    eval "$(jenv init - --no-rehash zsh | grep -v '^jenv refresh-plugins$')"
+fi
+
+if (( $+commands[go] )); then
+    export PATH="$PATH:$(go env GOPATH)/bin"
+fi
+
+if [[ -x "$HOME/.local/bin/mise" ]]; then
+    eval "$("$HOME/.local/bin/mise" activate zsh)"
+fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # bun completions
 [ -s "/Users/emmet/.bun/_bun" ] && source "/Users/emmet/.bun/_bun"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 

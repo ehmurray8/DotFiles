@@ -1,0 +1,22 @@
+id = "dotfiles.workspace-picker"
+name = "Workspace Picker"
+version = "0.1.0"
+min_herdr_version = "0.9.0"
+description = "Fuzzy workspace switching with keyboard navigation."
+platforms = ["macos", "linux"]
+
+[[actions]]
+id = "open-workspace"
+title = "Open workspace picker"
+command = ["./workspace-picker", "open", "workspace"]
+
+[[actions]]
+id = "open-collapsed"
+title = "Open compact workspace picker"
+command = ["./workspace-picker", "open", "collapsed"]
+
+[[panes]]
+id = "picker"
+title = "Workspace Picker"
+placement = "popup"
+command = ["./workspace-picker", "run"]

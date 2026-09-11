@@ -1,0 +1,54 @@
+#!/bin/sh
+
+set -eu
+
+open_picker() {
+    mode="$1"
+    "$HERDR_BIN_PATH" plugin pane open \
+        --plugin "$HERDR_PLUGIN_ID" \
+        --entrypoint picker \
+        --placement popup \
+        --width 90% \
+        --height 90% \
+        --focus \
+        --env "WORKSPACE_PICKER_MODE=$mode"
+}
+
+run_picker() {
+    mode="${WORKSPACE_PICKER_MODE:-workspace}"
+    prompt="Workspace: "
+    header="Ctrl-n/Ctrl-p or arrows to move, Enter to switch"
+
+    if [ "$mode" = "collapsed" ]; then
+        header="Compact workspace picker | Ctrl-n/Ctrl-p or arrows to move"
+    fi
+
+    rows=$("$HERDR_BIN_PATH" workspace list | jq -r '
+        .result.workspaces[] |
+        [ .workspace_id, (.label // .workspace_id) ] |
+        @tsv
+    ')
+    selected=$(printf '%s\n' "$rows" | fzf \
+        --prompt "$prompt" \
+        --header "$header" \
+        --delimiter '\t' \
+        --with-nth=2 \
+        --layout=reverse \
+        --bind 'ctrl-n:down,ctrl-p:up')
+
+    [ -n "$selected" ] || exit 0
+    workspace_id=$(printf '%s\n' "$selected" | cut -f1)
+    "$HERDR_BIN_PATH" workspace focus "$workspace_id"
+}
+
+case "${1:-}" in
+    open)
+        open_picker "${2:-workspace}"
+        ;;
+    run)
+        run_picker
+        ;;
+    *)
+        exit 2
+        ;;
+esac

@@ -1,0 +1,35 @@
+# Symlink to: ~/.config/herdr/plugins/config/sessionizer/config.toml
+
+[projects]
+roots = ["~/.config", "~/projects", "~/work"]
+git_only = false
+
+[ui]
+placement = "popup"
+width = "90%"
+height = "90%"
+
+[layout]
+focus = "code"
+
+[tabs.code]
+label = "code"
+
+[[tabs.code.panes]]
+id = "code"
+title = "code"
+command = "nvim"
+
+[tabs.ai]
+label = "ai"
+
+[[tabs.ai.panes]]
+id = "ai"
+title = "ai"
+
+[tabs.terminal]
+label = "terminal"
+
+[[tabs.terminal.panes]]
+id = "terminal"
+title = "terminal"

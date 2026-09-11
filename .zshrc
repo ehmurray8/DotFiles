@@ -83,7 +83,7 @@ alias tnew="tmux new -t"
 alias tattach="tmux attach-session -t"
 alias pping="~/prettyping --nolegend"
 alias preview="fzf --preview 'bat --color=\"always\" {}'"
-alias ls='eza -lh --group-directories-first --icons --hyperlink'
+alias ls='eza -lh --group-directories-first --icons always'
 alias lsa='ls -a'
 alias lt='eza --tree --level=2 --long --icons --git'
 alias lta='lt -a'

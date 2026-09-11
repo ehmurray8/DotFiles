@@ -99,17 +99,8 @@ source ~/.zshrc.local
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export PATH="$HOME/.jenv/bin:$HOME/.jenv/shims:$PATH"
-if (( $+commands[jenv] )); then
-    eval "$(jenv init - --no-rehash zsh | grep -v '^jenv refresh-plugins$')"
-fi
-
 if (( $+commands[go] )); then
     export PATH="$PATH:$(go env GOPATH)/bin"
-fi
-
-if [[ -x "$HOME/.local/bin/mise" ]]; then
-    eval "$("$HOME/.local/bin/mise" activate zsh)"
 fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
@@ -129,7 +120,3 @@ export ANDROID_HOME=~/Library/Android/sdk
 if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
 
 export EDITOR=nvim
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

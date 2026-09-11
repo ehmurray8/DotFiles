@@ -73,7 +73,7 @@ name = "terminal"
 mouse_capture = true
 
 [advanced]
-scrollback_limit_bytes = 1600000
+scrollback_limit_bytes = 20000000
 
 [ui.toast]
 delivery = "system"

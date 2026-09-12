@@ -1,38 +1,3 @@
-require("mason").setup({})
-
-
-require("flutter-tools").setup {
-    fvm = true,
-    widget_guides = {
-        enabled = true,
-    }
-}
-
-require("kotlin").setup({
-	inlay_hints = {
-		enabled = true,
-	},
-	-- Add this to pass options to the underlying LSP client
-	lspconfig = {
-		-- Increase the timeout for the initial handshake
-		init_options = {
-			storagePath = vim.fn.stdpath("cache") .. "/kotlin-lsp",
-		},
-		flags = {
-			-- This prevents Neovim from spamming the "heavy" Kotlin server
-			debounce_text_changes = 200,
-		},
-	},
-	settings = {
-		kotlin = {
-			imports = {
-				importAliasCount = 99,
-				starImportLimit = 99,
-			},
-		},
-	},
-})
-
 vim.lsp.handlers["textDocument/completion"] = function(err, result, ctx, config)
 	return vim.lsp.handlers.on_completion(err, result, ctx, config)
 end
@@ -41,22 +6,6 @@ local original_request = vim.lsp.buf_request
 vim.lsp.buf_request = function(bufnr, method, params, handler)
 	return original_request(bufnr, method, params, handler)
 end
-
--- https://www.reddit.com/r/neovim/comments/1mbk9sk/comment/n5tougl/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1
-require("mason-lspconfig").setup({
-	ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-	automatic_installation = false,
-	handlers = {
-		function(server_name)
-			local server = servers[server_name] or {}
-			-- This handles overriding only values explicitly passed
-			-- by the server configuration above. Useful when disabling
-			-- certain features of an LSP (for example, turning off formatting for ts_ls)
-			server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-			require("lspconfig")[server_name].setup(server)
-		end,
-	},
-})
 
 local vue_ls_path = vim.fn.expand("$MASON/packages/vue-language-server")
 local vue_language_server_path = vue_ls_path .. "/node_modules/@vue/language-server"
@@ -233,58 +182,7 @@ vim.lsp.config("*", {
 	capabilities = capabilities,
 })
 
-local cmp = require("cmp")
-
-cmp.setup({
-	performance = {
-		fetching_timeout = 2000, -- Increase the time cmp waits for a response
-	},
-	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "buffer" },
-		{ name = "path" },
-	},
-	mapping = cmp.mapping.preset.insert({
-		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-		["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-		["<C-y>"] = cmp.mapping.confirm({ select = true }),
-		["<C-Space>"] = cmp.mapping.complete(),
-	}),
-	snippet = {
-		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
-		end,
-	},
-	window = {
-		-- completion = cmp.config.window.bordered(),
-	},
-})
-
-cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
-	sources = {
-		{ name = "vim-dadbod-completion" },
-		{ name = "buffer" },
-	},
-})
-
-vim.filetype.add({
-	extension = {
-		pkl = "pkl",
-	},
-})
-
-local function quickfix()
-	vim.lsp.buf.code_action({
-		filter = function(a)
-			return a.isPreferred
-		end,
-		apply = true,
-	})
-end
-
 vim.diagnostic.config({ virtual_text = true })
-
-vim.keymap.set("n", "<leader>qf", quickfix, { noremap = true, silent = true })
 
 vim.keymap.set("n", "vd", "<cmd>lua vim.diagnostic.open_float()<cr>", { remap = false, desc = "View diagnostics" })
 vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { remap = false, desc = "Previous diagnostic" })
@@ -328,9 +226,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			})
 		end, { buffer = event.buf, desc = "Optimize Imports" })
 
-        vim.keymap.set("n", "<leader>ff", function()
-            require("telescope").extensions.flutter.commands()
-        end, {buffer = bufnr, remap = false, desc = "Open flutter commands"})
+		vim.keymap.set("n", "<leader>ff", function()
+			require("telescope").extensions.flutter.commands()
+		end, { buffer = bufnr, remap = false, desc = "Open flutter commands" })
 
 		-- local client = vim.lsp.get_client_by_id(event.data.client_id)
 		-- if client:supports_method("textDocument/completion") then
@@ -348,7 +246,7 @@ vim.lsp.enable("gopls")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("eslint")
 vim.lsp.enable("ts_ls")
+vim.lsp.enable("jdtls")
 vim.lsp.enable("sourcekit") -- swift
-vim.lsp.enable("kotlin")
 vim.lsp.enable("ruff")
 vim.lsp.enable("pyright")

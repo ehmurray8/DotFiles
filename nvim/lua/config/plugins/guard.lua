@@ -81,11 +81,11 @@ end
 -- ft("python"):fmt("black"):lint("pylint")
 
 if is_executable("ktlint") and is_executable("detekt") then
-    ft("kotlin"):fmt("ktlint"):lint("detekt")
+	ft("kotlin"):fmt("ktlint"):lint("detekt")
 end
 
 if is_executable("dart") then
-    ft("dart"):fmt("dart")
+	ft("dart"):fmt("dart")
 end
 
 -- NB: this does not work with formatters

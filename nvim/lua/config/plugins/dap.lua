@@ -58,65 +58,65 @@ dap.configurations.swift = {
 }
 
 dap.adapters.python = function(cb, config)
-  if config.request == 'attach' then
-    ---@diagnostic disable-next-line: undefined-field
-    local port = (config.connect or config).port
-    ---@diagnostic disable-next-line: undefined-field
-    local host = (config.connect or config).host or '127.0.0.1'
-    cb({
-      type = 'server',
-      port = assert(port, '`connect.port` is required for a python `attach` configuration'),
-      host = host,
-      options = {
-        source_filetype = 'python',
-      },
-    })
-  else
-    local cwd = vim.fn.getcwd()
-    local python = ''
-    if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
-      python = cwd .. '/venv/bin/python'
-    elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
-      python = cwd .. '/.venv/bin/python'
-    else
-      python = '/usr/bin/python'
-    end
+	if config.request == "attach" then
+		---@diagnostic disable-next-line: undefined-field
+		local port = (config.connect or config).port
+		---@diagnostic disable-next-line: undefined-field
+		local host = (config.connect or config).host or "127.0.0.1"
+		cb({
+			type = "server",
+			port = assert(port, "`connect.port` is required for a python `attach` configuration"),
+			host = host,
+			options = {
+				source_filetype = "python",
+			},
+		})
+	else
+		local cwd = vim.fn.getcwd()
+		local python = ""
+		if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
+			python = cwd .. "/venv/bin/python"
+		elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+			python = cwd .. "/.venv/bin/python"
+		else
+			python = "/usr/bin/python"
+		end
 
-    cb({
-      type = 'executable',
-      command = python,
-      args = { '-m', 'debugpy.adapter' },
-      options = {
-        source_filetype = 'python',
-      },
-    })
-  end
+		cb({
+			type = "executable",
+			command = python,
+			args = { "-m", "debugpy.adapter" },
+			options = {
+				source_filetype = "python",
+			},
+		})
+	end
 end
 
 dap.configurations.python = {
-  {
-    -- The first three options are required by nvim-dap
-    type = 'python'; -- the type here established the link to the adapter definition: `dap.adapters.python`
-    request = 'launch';
-    name = "Launch file";
+	{
+		-- The first three options are required by nvim-dap
+		type = "python", -- the type here established the link to the adapter definition: `dap.adapters.python`
+		request = "launch",
+		name = "Launch file",
 
-    -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
+		-- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
 
-    program = "${file}"; -- This configuration will launch the current file if used.
-    pythonPath = function()
-      -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
-      -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
-      -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
-      local cwd = vim.fn.getcwd()
-      if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
-        return cwd .. '/venv/bin/python'
-      elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
-        return cwd .. '/.venv/bin/python'
-      else
-        return '/usr/bin/python'
-      end
-    end;
-  },
+		program = "${file}", -- This configuration will launch the current file if used.
+		pythonPath = function()
+			-- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
+			-- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
+			-- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
+			local cwd = vim.fn.getcwd()
+			if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
+				return cwd .. "/venv/bin/python"
+			elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+				return cwd .. "/.venv/bin/python"
+			else
+				return "/usr/bin/python"
+			end
+		end,
+	},
 }
 
 local js_languages = {
@@ -189,7 +189,32 @@ for _, language in ipairs(js_languages) do
 	}
 end
 
-require("dap-vscode-js").setup({})
+require("dap-vscode-js").setup({
+	debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
+})
+
+vim.keymap.set("n", "<leader>eb", function()
+	require("dap").toggle_breakpoint()
+end, { desc = "Debug set breakpoint" })
+vim.keymap.set("x", "<leader>ee", function()
+	require("dapui").eval()
+end, { desc = "Debug evaluate" })
+vim.keymap.set("n", "<leader>ec", function()
+	require("dap").continue()
+end, { desc = "Debug continue" })
+vim.keymap.set("n", "<leader>eo", function()
+	require("dap").step_over()
+end, { desc = "Debug step over" })
+vim.keymap.set("n", "<leader>ei", function()
+	require("dap").step_into()
+end, { desc = "Debug step into" })
+vim.keymap.set("n", "<leader>eO", function()
+	require("dap").step_out()
+end, { desc = "Debug step out" })
+
+vim.api.nvim_create_user_command("DAPUI", function()
+	require("dapui").toggle()
+end, { desc = "Open DAPUI" })
 
 vim.keymap.set("n", "<Leader>es", function()
 	if vim.fn.filereadable(".vscode/launch.json") then
@@ -231,6 +256,3 @@ vim.keymap.set("n", "<leader>xdT", xcodebuild.debug_class_tests, { desc = "Debug
 vim.keymap.set("n", "<leader>xb", xcodebuild.toggle_breakpoint, { desc = "Toggle Breakpoint" })
 vim.keymap.set("n", "<leader>xB", xcodebuild.toggle_message_breakpoint, { desc = "Toggle Message Breakpoint" })
 vim.keymap.set("n", "<leader>xdx", xcodebuild.terminate_session, { desc = "Terminate Debugger" })
-vim.keymap.set("n", "<leader>z", function()
-  require("maximize").toggle()
-end, { desc = "Toggle window zoom" })

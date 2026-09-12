@@ -3,6 +3,7 @@
 [projects]
 roots = ["~/.config", "~/projects", "~/work"]
 git_only = false
+depth = 1
 
 [ui]
 placement = "popup"

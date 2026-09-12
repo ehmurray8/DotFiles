@@ -43,6 +43,7 @@ track_workspace() {
 }
 
 toggle_workspace() {
+    track_workspace
     current=$(read_state "$current_file")
     previous=$(read_state "$previous_file")
     [ -n "$previous" ] || exit 0

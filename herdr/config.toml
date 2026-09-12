@@ -41,6 +41,7 @@ close_pane = "prefix+shift+x"
 reload_config = "prefix+shift+r"
 cycle_pane_previous = "prefix+shift+tab"
 cycle_pane_next = "prefix+tab"
+last_pane = "prefix+l"
 
 [[keys.command]]
 key = "prefix+f"
@@ -59,12 +60,6 @@ key = "prefix+s"
 type = "plugin_action"
 command = "dotfiles.workspace-picker.open-collapsed"
 description = "open compact workspace picker"
-
-[[keys.command]]
-key = "prefix+l"
-type = "plugin_action"
-command = "dotfiles.last-workspace.toggle"
-description = "switch to last workspace"
 
 [theme]
 name = "terminal"

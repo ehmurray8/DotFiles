@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "lsp": "true",
+  "lsp": true,
   "plugin": ["opencode-gitlab-plugin"],
   "agent": {
     "code-reviewer": {

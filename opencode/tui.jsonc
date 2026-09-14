@@ -1,4 +1,4 @@
 {
-  "plugin": ["./herdr-tui-session.js"],
-  "theme": "system"
+  "theme": "system",
+  "plugin": ["./herdr-tui-session.js"]
 }

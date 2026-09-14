@@ -58,7 +58,13 @@ return {
 	{
 		"mason-org/mason.nvim",
 		cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUpdate", "MasonLog" },
-		opts = {},
+		opts = function()
+			if vim.fn.isdirectory(vim.fn.expand("~/.local/share/mason-registry")) == 1 then
+				return { registries = { "file:~/.local/share/mason-registry" } }
+			end
+
+			return {}
+		end,
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",

@@ -79,6 +79,9 @@ Dot files for use on Mac and Linux machines. Run the init.sh script to setup def
 `pip3 install neovim --user`
 https://github.com/Shougo/deoplete.nvim/issues/550
 
+## Install TreeSitter CLI
+npm install -g tree-sitter-cli
+
 ## Helpful Scripts
 * add_gitignore (agi) adds a standardized gitignore file to the current directory, pulled from github
 * add_app script for creating linux desktop entries

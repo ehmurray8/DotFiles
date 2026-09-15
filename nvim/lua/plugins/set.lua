@@ -2,7 +2,7 @@
 vim.opt.nu = true
 
 -- Use relative line numbers
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 
 -- 4 character tabs
 vim.opt.tabstop = 4

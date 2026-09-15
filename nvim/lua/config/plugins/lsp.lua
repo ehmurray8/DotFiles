@@ -10,19 +10,6 @@ end
 local vue_ls_path = vim.fn.expand("$MASON/packages/vue-language-server")
 local vue_language_server_path = vue_ls_path .. "/node_modules/@vue/language-server"
 
-vim.lsp.config("ts_ls", {
-	init_options = {
-		plugins = {
-			{
-				name = "@vue/typescript-plugin",
-				location = vue_language_server_path,
-				languages = { "vue" },
-			},
-		},
-	},
-	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-})
-
 vim.lsp.config("tailwindcss", {
 	settings = {
 		tailwindCSS = {
@@ -109,7 +96,7 @@ vim.lsp.config("vue_ls", {
 	end,
 })
 
-vim.lsp.config("pyright", {
+vim.lsp.config("basedpyright", {
 	settings = {
 		pyright = {
 			-- Use ruff import organizer
@@ -245,8 +232,7 @@ vim.lsp.enable("terraformls")
 vim.lsp.enable("gopls")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("eslint")
-vim.lsp.enable("ts_ls")
 vim.lsp.enable("jdtls")
 vim.lsp.enable("sourcekit") -- swift
 vim.lsp.enable("ruff")
-vim.lsp.enable("pyright")
+vim.lsp.enable("basedpyright")

@@ -54,6 +54,13 @@ vim.lsp.config("jdtls", {
 	filetypes = { "java" },
 })
 
+local dotnet_path = vim.uv.fs_realpath(vim.fn.exepath("dotnet"))
+vim.lsp.config("csharp_ls", {
+	cmd_env = {
+		DOTNET_ROOT = vim.fs.dirname(dotnet_path),
+	},
+})
+
 vim.lsp.config("vue_ls", {
 	settings = {
 		init_options = {
@@ -236,3 +243,4 @@ vim.lsp.enable("jdtls")
 vim.lsp.enable("sourcekit") -- swift
 vim.lsp.enable("ruff")
 vim.lsp.enable("basedpyright")
+vim.lsp.enable("csharp_ls")

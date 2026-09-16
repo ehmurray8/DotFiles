@@ -22,6 +22,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		"python",
 		"terraform",
 		"css",
+		"svelte",
+		"cs",
 	},
 	callback = function()
 		-- syntax highlighting, provided by Neovim

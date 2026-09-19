@@ -10,8 +10,9 @@ workspace_picker = "prefix+w"
 goto = "prefix+g"
 navigate_workspace_up = ["up", "ctrl+p"]
 navigate_workspace_down = ["down", "ctrl+n"]
+switch_workspace = "prefix+shift+1..9"
 new_workspace = "prefix+shift+n"
-rename_workspace = "prefix+shift+4" # Ctrl-a + $
+rename_workspace = "prefix+shift+w"
 close_workspace = "prefix+q"
 
 # Session control

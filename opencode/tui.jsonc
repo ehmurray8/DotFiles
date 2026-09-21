@@ -1,4 +1,7 @@
 {
   "theme": "system",
-  "plugin": ["./herdr-tui-session.js"]
+  "plugin": ["./herdr-tui-session.js"],
+  "keybinds": {
+    "terminal_suspend": "none"
+  }
 }

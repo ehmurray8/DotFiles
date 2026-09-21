@@ -19,25 +19,13 @@ local treesitter_parsers = {
 }
 
 return {
-	{
-		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
-		opts = {
-			on_highlights = function(highlights)
-				highlights.DapBreakpoint = { fg = "#f73939" }
-				highlights.DapBreakpointRejected = { fg = "#dbdb02" }
-				highlights.DapStopped = { fg = "#228b22" }
-			end,
-		},
-		config = function(_, opts)
-			require("tokyonight").setup(opts)
-			vim.cmd.colorscheme("tokyonight-moon")
-		end,
-	},
+	{ import = "plugins.theme" },
 	{
 		"f-person/auto-dark-mode.nvim",
 		event = "VeryLazy",
+		cond = function()
+			return not require("config.omarchy_theme").is_omarchy()
+		end,
 		config = function()
 			require("config.plugins.auto-dark-mode")
 		end,
@@ -117,23 +105,38 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"mason-org/mason.nvim",
-			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
 			require("config.plugins.lsp")
 		end,
 	},
 	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
+		"saghen/blink.cmp",
+		version = "*",
+		event = { "BufReadPre", "BufNewFile", "InsertEnter" },
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-buffer",
-			"L3MON4D3/LuaSnip",
+			"rafamadriz/friendly-snippets",
+			"saghen/blink.compat",
 		},
 		config = function()
-			require("config.plugins.cmp")
+			require("config.plugins.blink")
+		end,
+	},
+	{
+		"folke/lazydev.nvim",
+		ft = "lua",
+		opts = {},
+	},
+	{
+		name = "omarchy-theme-hotreload",
+		dir = vim.fn.stdpath("config"),
+		lazy = false,
+		priority = 1001,
+		cond = function()
+			return require("config.omarchy_theme").is_omarchy()
+		end,
+		config = function()
+			require("config.omarchy_theme").watch()
 		end,
 	},
 	{

@@ -127,3 +127,4 @@ export ANDROID_HOME=~/Library/Android/sdk
 if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
 
 export EDITOR=nvim
+export SUDO_EDITOR=nvim

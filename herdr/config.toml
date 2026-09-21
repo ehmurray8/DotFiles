@@ -10,7 +10,7 @@ workspace_picker = "prefix+w"
 goto = "prefix+g"
 navigate_workspace_up = ["up", "ctrl+p"]
 navigate_workspace_down = ["down", "ctrl+n"]
-switch_workspace = "prefix+shift+1..9"
+switch_workspace = "ctrl+1..9"
 new_workspace = "prefix+shift+n"
 rename_workspace = "prefix+shift+w"
 close_workspace = "prefix+q"
@@ -65,8 +65,21 @@ description = "open compact workspace picker"
 [theme]
 name = "terminal"
 
+[theme.custom]
+# The active tab is drawn as panel_bg text on an accent background, so panel_bg
+# has to be dark for it to read - same colors as status-left's "#[fg=black,bg=blue]"
+panel_bg = "black"
+
 [ui]
 mouse_capture = true
+accent = "blue"
+
+# tmux drew single-line dividers between adjacent panes and no outer frame
+pane_gaps = false
+pane_outer_borders = false
+
+# status-right had the zoom flag followed by #h
+tab_bar_right = [{ type = "zoom" }, { type = "hostname" }]
 
 [advanced]
 scrollback_limit_bytes = 20000000
@@ -76,3 +89,7 @@ delivery = "system"
 
 [terminal]
 kitty_graphics = true
+
+# Matches -c "#{pane_current_path}" on every split, window, and session
+new_cwd = "follow"
+default_shell = "zsh"

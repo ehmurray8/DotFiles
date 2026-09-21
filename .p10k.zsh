@@ -1546,6 +1546,54 @@
   # really need it.
   typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=true
 
+  # Follow Omarchy's current palette without affecting macOS or other systems.
+  function _dotfiles_p10k_apply_omarchy_theme() {
+    local theme_file="$HOME/.local/state/omarchy/current/theme/colors.toml"
+    [[ -r /usr/share/omarchy && -r $theme_file ]] || return 0
+
+    local key value
+    typeset -A colors
+    while IFS='=' read -r key value; do
+      key=${key//[[:space:]]/}
+      value=${value//[[:space:]]/}
+      value=${value//\"/}
+      [[ $value =~ '^#[0-9A-Fa-f]{6}$' ]] && colors[$key]=$value
+    done < "$theme_file"
+
+    [[ -n ${colors[accent]} ]] || return 0
+
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=${colors[accent]}
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=${colors[red]:-${colors[accent]}}
+    typeset -g POWERLEVEL9K_DIR_FOREGROUND=${colors[blue]:-${colors[foreground]}}
+    typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=${colors[muted]:-${colors[foreground]}}
+    typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=${colors[accent]}
+    typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND=${colors[green]:-${colors[foreground]}}
+    typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND=${colors[orange]:-${colors[yellow]}}
+    typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND=${colors[yellow]:-${colors[foreground]}}
+    typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=${colors[green]:-${colors[foreground]}}
+    typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=${colors[red]:-${colors[foreground]}}
+    typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_FOREGROUND=${colors[red]:-${colors[foreground]}}
+    typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=${colors[muted]:-${colors[foreground]}}
+    typeset -g POWERLEVEL9K_TIME_FOREGROUND=${colors[muted]:-${colors[foreground]}}
+  }
+
+  function _dotfiles_p10k_refresh_omarchy_theme() {
+    local theme_file="$HOME/.local/state/omarchy/current/theme/colors.toml"
+    local mtime
+    [[ -r /usr/share/omarchy && -r $theme_file ]] || return 0
+    mtime=$(stat -c %Y "$theme_file" 2>/dev/null) || return 0
+    [[ $mtime == ${_DOTFILES_P10K_OMARCHY_THEME_MTIME:-} ]] && return 0
+    typeset -g _DOTFILES_P10K_OMARCHY_THEME_MTIME=$mtime
+    _dotfiles_p10k_apply_omarchy_theme
+    (( $+functions[p10k] )) && p10k reload
+  }
+
+  if [[ -r /usr/share/omarchy ]]; then
+    _dotfiles_p10k_refresh_omarchy_theme
+    autoload -Uz add-zsh-hook
+    add-zsh-hook precmd _dotfiles_p10k_refresh_omarchy_theme
+  fi
+
   # If p10k is already loaded, reload configuration.
   # This works even with POWERLEVEL9K_DISABLE_HOT_RELOAD=true.
   (( ! $+functions[p10k] )) || p10k reload

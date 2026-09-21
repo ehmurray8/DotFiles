@@ -1,9 +1,11 @@
 local treesitter_parsers = {
+    "bash",
 	"c",
 	"css",
 	"html",
 	"java",
 	"javascript",
+    "json",
 	"kotlin",
 	"lua",
 	"python",

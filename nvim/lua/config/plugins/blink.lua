@@ -14,7 +14,6 @@ blink.setup({
 	},
 	snippets = { preset = "default" },
 	sources = {
-		compat = { "dadbod" },
 		default = { "lsp", "path", "snippets", "buffer" },
 		per_filetype = {
 			lua = { "lsp", "path", "snippets", "buffer", "lazydev" },

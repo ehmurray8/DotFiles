@@ -131,7 +131,7 @@ return {
 	},
 	{
 		name = "omarchy-theme-hotreload",
-		dir = vim.fn.stdpath("config"),
+		dir = vim.fn.stdpath("config") .. "/lua/plugins",
 		lazy = false,
 		priority = 1001,
 		cond = function()

@@ -31,7 +31,8 @@ function M.current_theme()
 		if spec[1] == "LazyVim/LazyVim" then
 			colorscheme = spec.opts and spec.opts.colorscheme
 		elseif spec[1] then
-			theme_plugin = spec.name or spec[1]
+			local plugin_name = spec.name or spec[1]
+			theme_plugin = plugin_name:match("([^/]+)$")
 		end
 	end
 
@@ -55,7 +56,7 @@ function M.normalize_specs()
 	if theme_plugin and colorscheme then
 		table.insert(normalized, {
 			name = "dotfiles-omarchy-theme",
-			dir = vim.fn.stdpath("config"),
+			dir = vim.fn.stdpath("config") .. "/lua/config",
 			lazy = false,
 			priority = 999,
 			dependencies = { theme_plugin },

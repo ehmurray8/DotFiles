@@ -127,6 +127,8 @@ local js_languages = {
 	"vue",
 }
 
+local chromium = vim.fn.exepath("chromium")
+
 for _, language in ipairs(js_languages) do
 	dap.configurations[language] = {
 		-- Debug single nodejs files
@@ -152,6 +154,7 @@ for _, language in ipairs(js_languages) do
 			type = "pwa-chrome",
 			request = "launch",
 			name = "Launch & Debug Chrome",
+			runtimeExecutable = chromium ~= "" and chromium or nil,
 			url = function()
 				local co = coroutine.running()
 				return coroutine.create(function()

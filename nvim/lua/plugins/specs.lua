@@ -181,7 +181,7 @@ return {
 			"wojciech-kulik/xcodebuild.nvim",
 			{
 				"microsoft/vscode-js-debug",
-				build = "npm ci --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
+				build = "npm ci --legacy-peer-deps --ignore-scripts && npm rebuild esbuild && npx gulp vsDebugServerBundle && mv dist out",
 			},
 			{ "Joakker/lua-json5", build = "./install.sh" },
 			"mxsdev/nvim-dap-vscode-js",

@@ -42,3 +42,10 @@ vim.opt.colorcolumn = "120"
 
 -- Setup exrc to load local config from .nvim.lua files
 vim.o.exrc = true
+
+-- Enable spelling and persist accepted words in the personal dictionary
+local spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
+vim.fn.mkdir(vim.fn.fnamemodify(spellfile, ":h"), "p")
+vim.opt.spell = true
+vim.opt.spelllang = { "en_us" }
+vim.opt.spellfile = spellfile

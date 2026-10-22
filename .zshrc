@@ -128,3 +128,5 @@ if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
 
 export EDITOR=nvim
 export SUDO_EDITOR=nvim
+
+. "$HOME/.local/share/../bin/env"

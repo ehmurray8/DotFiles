@@ -89,7 +89,11 @@ if is_executable("dart") then
 end
 
 -- NB: this does not work with formatters
-ft("*"):lint("codespell")
+local spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
+ft("*"):lint({
+	cmd = "codespell",
+	args = { "-I", spellfile },
+})
 
 vim.g.guard_config = {
 	-- Choose to format on every write to a buffer

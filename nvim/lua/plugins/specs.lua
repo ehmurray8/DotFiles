@@ -70,7 +70,8 @@ return {
 		event = { { event = { "BufReadPre", "BufNewFile" }, pattern = { "*.dart", "pubspec.yaml" } } },
 		dependencies = { "nvim-lua/plenary.nvim", "stevearc/dressing.nvim" },
 		opts = {
-			fvm = true,
+			fvm = false,
+			flutter_lookup_cmd = "mise where flutter",
 			widget_guides = { enabled = true },
 		},
 	},
@@ -130,8 +131,9 @@ return {
 		opts = {},
 	},
 	{
+		"omarchy-theme-hotreload",
 		name = "omarchy-theme-hotreload",
-		dir = vim.fn.stdpath("config") .. "/lua/plugins",
+		virtual = true,
 		lazy = false,
 		priority = 1001,
 		cond = function()

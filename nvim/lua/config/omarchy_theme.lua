@@ -55,8 +55,9 @@ function M.normalize_specs()
 
 	if theme_plugin and colorscheme then
 		table.insert(normalized, {
+			"dotfiles-omarchy-theme",
 			name = "dotfiles-omarchy-theme",
-			dir = vim.fn.stdpath("config") .. "/lua/config",
+			virtual = true,
 			lazy = false,
 			priority = 999,
 			dependencies = { theme_plugin },

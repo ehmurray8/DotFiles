@@ -49,11 +49,13 @@ return {
 		"mason-org/mason.nvim",
 		cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUpdate", "MasonLog" },
 		opts = function()
+			local registries = { "file:" .. vim.fn.stdpath("config") .. "/mason-registry" }
 			if vim.fn.isdirectory(vim.fn.expand("~/.local/share/mason-registry")) == 1 then
-				return { registries = { "file:~/.local/share/mason-registry" } }
+				table.insert(registries, "file:~/.local/share/mason-registry")
 			end
 
-			return {}
+			table.insert(registries, "github:mason-org/mason-registry")
+			return { registries = registries }
 		end,
 	},
 	{

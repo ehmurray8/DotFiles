@@ -72,12 +72,28 @@ herdr plugin link "$HOME/DotFiles/herdr/workspace-picker"
 
 ## 4. Configure OpenCode
 
-Link the tracked OpenCode configuration:
+Install OpenCode v2 through mise (the npm backend also works with mise older
+than 2026.10.9):
+
+```sh
+MISE_NPM_PACKAGE_MANAGER=npm mise use -g npm:@opencode/cli@latest
+mise unuse -g --no-prune opencode
+```
+
+For future OpenCode updates, use npm so the package's required postinstall
+script runs:
+
+```sh
+MISE_NPM_PACKAGE_MANAGER=npm mise upgrade npm:@opencode/cli
+```
+
+Link the tracked OpenCode v2 configuration. Back up any existing files at these
+destinations first:
 
 ```sh
 mkdir -p "$HOME/.config/opencode"
 ln -s "$HOME/DotFiles/opencode/opencode.jsonc" "$HOME/.config/opencode/opencode.jsonc"
-ln -s "$HOME/DotFiles/opencode/tui.jsonc" "$HOME/.config/opencode/tui.jsonc"
+ln -s "$HOME/DotFiles/opencode/cli.json" "$HOME/.config/opencode/cli.json"
 ```
 
 Install Herdr's official OpenCode integration:
@@ -86,7 +102,12 @@ Install Herdr's official OpenCode integration:
 herdr integration install opencode
 ```
 
-Herdr creates `~/.config/opencode/plugins/herdr-agent-state.js`. The integration
+V2 uses `cli.json` instead of V1's `tui.json(c)`. Keep the global configuration
+in `opencode.jsonc`; move any old `opencode.json` out of the config directory
+after merging its settings.
+
+Herdr creates `~/.config/opencode/plugins/herdr-agent-state.js` and
+`~/.config/opencode/herdr-tui-session.js`. The integration
 reports OpenCode lifecycle and session information when OpenCode runs inside a
 Herdr pane. Restart OpenCode after installing it.
 

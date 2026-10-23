@@ -1,62 +1,62 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "lsp": true,
-  "plugin": ["opencode-gitlab-plugin"],
-  "agent": {
+  "update": "disable",
+  "plugins": ["opencode-gitlab-plugin@3.1.0"],
+  "experimental": {
+    "subagent_depth": 2
+  },
+  "agents": {
     "code-reviewer": {
       "description": "Reviews code for best practices and potential issues",
       "mode": "subagent",
-      "prompt": "You are a code reviewer. Focus on security, performance, and maintainability. If we find a security issue delegate to @security-engineer",
-      "permission": {
-        "edit": "deny",
-        "write": "deny"
-      }
+      "system": "You are a code reviewer. Focus on security, performance, and maintainability. If we find a security issue delegate to @security-engineer",
+      "permissions": [
+        { "action": "edit", "resource": "*", "effect": "deny" }
+      ]
     },
     "security-engineer": {
       "description": "Reviews code for best practices and potential issues",
       "mode": "subagent",
-      "prompt": "You are a security engineer. Focus on security, you'll be given tasks to figure out whether there's a risky code snippet or CVE we need to address with versions.",
-      "permission": {
-        "edit": "deny",
-        "write": "deny"
-      }
+      "system": "You are a security engineer. Focus on security, you'll be given tasks to figure out whether there's a risky code snippet or CVE we need to address with versions.",
+      "permissions": [
+        { "action": "edit", "resource": "*", "effect": "deny" }
+      ]
     }
   },
-  "permission": {
-    "bash": {
-      "git *": "allow",
-      "git add*": "ask",
-      "git restore*": "ask",
-      "git stash*": "ask",
-      "git clean*": "deny",
-      "git commit*": "ask",
-      "git amend*": "ask",
-      "git rebase*": "ask",
-      "git cherry-pick*": "deny",
-      "git revert*": "deny",
-      "git reset*": "deny",
-      "git checkout*": "ask",
-      "git switch*": "ask",
-      "git branch -d*": "deny",
-      "git branch -D*": "deny",
-      "git merge*": "ask",
-      "git push*": "ask",
-      "git pull*": "ask",
-      "git clone*": "ask",
-      "git remote add*": "deny",
-      "git remote remove*": "deny",
-      "git remote set-url*": "deny",
-      "git tag*": "deny",
-      "glab *": "ask",
-      "glab mr list*": "allow",
-      "glab mr view*": "allow",
-      "glab mr create*": "ask",
-      "glab mr update*": "ask",
-      "glab mr merge*": "ask",
-      "grep *": "allow",
-      "rg *": "allow",
-      "npm *": "allow",
-      "rm *": "deny"
-    }
-  }
+  "permissions": [
+    { "action": "shell", "resource": "git *", "effect": "allow" },
+    { "action": "shell", "resource": "git add*", "effect": "ask" },
+    { "action": "shell", "resource": "git restore*", "effect": "ask" },
+    { "action": "shell", "resource": "git stash*", "effect": "ask" },
+    { "action": "shell", "resource": "git clean*", "effect": "deny" },
+    { "action": "shell", "resource": "git commit*", "effect": "ask" },
+    { "action": "shell", "resource": "git amend*", "effect": "ask" },
+    { "action": "shell", "resource": "git rebase*", "effect": "ask" },
+    { "action": "shell", "resource": "git cherry-pick*", "effect": "deny" },
+    { "action": "shell", "resource": "git revert*", "effect": "deny" },
+    { "action": "shell", "resource": "git reset*", "effect": "deny" },
+    { "action": "shell", "resource": "git checkout*", "effect": "ask" },
+    { "action": "shell", "resource": "git switch*", "effect": "ask" },
+    { "action": "shell", "resource": "git branch -d*", "effect": "deny" },
+    { "action": "shell", "resource": "git branch -D*", "effect": "deny" },
+    { "action": "shell", "resource": "git merge*", "effect": "ask" },
+    { "action": "shell", "resource": "git push*", "effect": "ask" },
+    { "action": "shell", "resource": "git pull*", "effect": "ask" },
+    { "action": "shell", "resource": "git clone*", "effect": "ask" },
+    { "action": "shell", "resource": "git remote add*", "effect": "deny" },
+    { "action": "shell", "resource": "git remote remove*", "effect": "deny" },
+    { "action": "shell", "resource": "git remote set-url*", "effect": "deny" },
+    { "action": "shell", "resource": "git tag*", "effect": "deny" },
+    { "action": "shell", "resource": "glab *", "effect": "ask" },
+    { "action": "shell", "resource": "glab mr list*", "effect": "allow" },
+    { "action": "shell", "resource": "glab mr view*", "effect": "allow" },
+    { "action": "shell", "resource": "glab mr create*", "effect": "ask" },
+    { "action": "shell", "resource": "glab mr update*", "effect": "ask" },
+    { "action": "shell", "resource": "glab mr merge*", "effect": "ask" },
+    { "action": "shell", "resource": "grep *", "effect": "allow" },
+    { "action": "shell", "resource": "rg *", "effect": "allow" },
+    { "action": "shell", "resource": "npm *", "effect": "allow" },
+    { "action": "shell", "resource": "rm *", "effect": "deny" }
+  ]
 }

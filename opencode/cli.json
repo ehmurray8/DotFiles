@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "theme": { "name": "system", "mode": "system" },
+  "plugins": ["./herdr-tui-session.js"],
+  "keybinds": {
+    "terminal.suspend": "none",
+    "agent.cycle": "tab",
+    "agent.cycle.reverse": "shift+tab",
+    "command.palette.show": ["ctrl+p", "<leader>p"],
+    "prompt.history.previous": "up",
+    "prompt.history.next": "down"
+  }
+}

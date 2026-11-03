@@ -182,6 +182,8 @@ vim.lsp.config("*", {
 
 vim.diagnostic.config({ virtual_text = true })
 
+require("config.plugins.kotlin_inlay_hints")
+
 vim.keymap.set("n", "vd", "<cmd>lua vim.diagnostic.open_float()<cr>", { remap = false, desc = "View diagnostics" })
 vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { remap = false, desc = "Previous diagnostic" })
 vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", { remap = false, desc = "Next diagnostic" })

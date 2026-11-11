@@ -8,6 +8,8 @@ local treesitter_parsers = {
     "json",
 	"kotlin",
 	"lua",
+	"markdown",
+	"markdown_inline",
 	"python",
 	"query",
 	"sql",
@@ -22,6 +24,14 @@ local treesitter_parsers = {
 
 return {
 	{ import = "plugins.theme" },
+	{
+		"folke/snacks.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {
+			image = { enabled = true },
+		},
+	},
 	{
 		"f-person/auto-dark-mode.nvim",
 		event = "VeryLazy",

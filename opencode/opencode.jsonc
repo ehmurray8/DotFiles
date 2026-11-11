@@ -57,6 +57,9 @@
     { "action": "shell", "resource": "grep *", "effect": "allow" },
     { "action": "shell", "resource": "rg *", "effect": "allow" },
     { "action": "shell", "resource": "npm *", "effect": "allow" },
-    { "action": "shell", "resource": "rm *", "effect": "deny" }
+    { "action": "shell", "resource": "rm *", "effect": "deny" },
+    { "action": "shell", "resource": "rm /tmp/*", "effect": "allow" },
+    { "action": "shell", "resource": "rm -f /tmp/*", "effect": "allow" },
+    { "action": "shell", "resource": "rm -rf /tmp/*", "effect": "allow" }
   ]
 }

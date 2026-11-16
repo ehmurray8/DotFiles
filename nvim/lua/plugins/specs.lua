@@ -1,11 +1,13 @@
 local treesitter_parsers = {
-    "bash",
+	"bash",
 	"c",
 	"css",
+	"hcl",
 	"html",
 	"java",
 	"javascript",
-    "json",
+	"json",
+	"jsx",
 	"kotlin",
 	"lua",
 	"markdown",
@@ -15,11 +17,13 @@ local treesitter_parsers = {
 	"sql",
 	"swift",
 	"terraform",
+	"tsx",
 	"typescript",
 	"vim",
 	"vimdoc",
 	"vue",
 	"xml",
+	"mermaid",
 }
 
 return {
@@ -393,5 +397,17 @@ return {
 			},
 		},
 		opts = {},
+	},
+	{
+		"kevalin/mermaid.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("mermaid").setup({
+				preview = {
+					renderer = "beautiful-mermaid", -- "mermaid.js" or "beautiful-mermaid"
+					theme = "zinc-light",
+				},
+			})
+		end,
 	},
 }

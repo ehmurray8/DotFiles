@@ -21,9 +21,11 @@ vim.api.nvim_create_autocmd("FileType", {
 		"vue",
 		"python",
 		"terraform",
+		"terraform-vars",
 		"css",
 		"svelte",
 		"cs",
+        "mermaid",
 	},
 	callback = function()
 		-- syntax highlighting, provided by Neovim

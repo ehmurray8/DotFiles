@@ -380,6 +380,23 @@ return {
 	},
 	{ "yousefhadder/markdown-plus.nvim", ft = "markdown", opts = {} },
 	{
+		"jakewvincent/mkdnflow.nvim",
+		ft = "markdown",
+		opts = {
+			modules = {
+				-- Disable features already handled by markdown-plus.nvim to avoid overlap
+				lists = false,
+				to_do = false,
+				tables = false,
+				conceal = false,
+				folds = false,
+				foldtext = false,
+				bib = false,
+				templates = false,
+			},
+		},
+	},
+	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		ft = "markdown",
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },

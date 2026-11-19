@@ -27,20 +27,76 @@ local function find_git_root()
 	return git_root
 end
 
--- Custom live_grep function to search in git root
+-- Always include dotfiles in ripgrep, but never search inside .git
+local grep_args = { "--hidden", "-g", "!.git" }
+
+-- Gitignored .env* files (e.g. .env, .env.local), as paths relative to git_root
+local function ignored_env_files(git_root)
+	local out = vim.fn.systemlist({
+		"git",
+		"-C",
+		git_root,
+		"ls-files",
+		"--others",
+		"--ignored",
+		"--exclude-standard",
+		"--directory",
+	})
+	if vim.v.shell_error ~= 0 then
+		return {}
+	end
+	local files = {}
+	for _, f in ipairs(out) do
+		if f:match("^%.env[^/]*$") or f:match("/%.env[^/]*$") then
+			table.insert(files, f)
+		end
+	end
+	return files
+end
+
+-- Custom live_grep function to search all non-ignored files in the git root,
+-- plus any gitignored .env* files
 local function live_grep_git_root()
 	local git_root = find_git_root()
-	if git_root then
-		require("telescope.builtin").live_grep({
-			search_dirs = { git_root },
-		})
+	if not git_root then
+		return
 	end
+	-- ripgrep searches explicitly named files regardless of .gitignore
+	local dirs = { git_root }
+	for _, f in ipairs(ignored_env_files(git_root)) do
+		table.insert(dirs, git_root .. "/" .. f)
+	end
+	builtin.live_grep({
+		search_dirs = dirs,
+		additional_args = grep_args,
+	})
 end
 
 vim.api.nvim_create_user_command("LiveGrepGitRoot", live_grep_git_root, {})
 
-vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Search by [P]roject [F]iles" })
+-- Find all non-ignored files (tracked and untracked), plus any .env* files
+local function project_files()
+	vim.fn.system({ "git", "rev-parse", "--is-inside-work-tree" })
+	if vim.v.shell_error ~= 0 then
+		return builtin.find_files({ hidden = true, file_ignore_patterns = { "^%.git/" } })
+	end
+	builtin.find_files({
+		find_command = {
+			"sh",
+			"-c",
+			"{ git ls-files --cached --others --exclude-standard;"
+				.. " git ls-files --others --ignored --exclude-standard --directory"
+				.. " | grep -E '(^|/)\\.env[^/]*$'; } | sort -u",
+		},
+	})
+end
+
+local function live_grep_cwd()
+	builtin.live_grep({ additional_args = grep_args })
+end
+
+vim.keymap.set("n", "<leader>pf", project_files, { desc = "Search by [P]roject [F]iles" })
 vim.keymap.set("n", "<leader>gf", builtin.git_files, { desc = "Search by [G]it [F]iles in current directory" })
-vim.keymap.set("n", "<leader>sf", builtin.live_grep, { desc = "[S]earch by [F]iles in current directory" })
+vim.keymap.set("n", "<leader>sf", live_grep_cwd, { desc = "[S]earch by [F]iles in current directory" })
 vim.keymap.set("n", "<leader>ps", ":LiveGrepGitRoot<cr>", { desc = "[P]roject [S]earch" })
 vim.keymap.set("n", "<leader>sr", require("telescope.builtin").resume, { desc = "[S]earch [R]esume" })

@@ -313,7 +313,10 @@ return {
 			{ "<leader>-", "<cmd>Oil<cr>", desc = "Open parent directory" },
 			{ "<leader>pv", "<cmd>Oil --float .<cr>", desc = "View file explorer" },
 		},
-		opts = {},
+		dependencies = { "benomahony/oil-git.nvim" },
+		config = function()
+			require("config.plugins.oil")
+		end,
 	},
 	{
 		"folke/trouble.nvim",

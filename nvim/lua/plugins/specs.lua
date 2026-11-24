@@ -40,7 +40,8 @@ return {
 		"f-person/auto-dark-mode.nvim",
 		event = "VeryLazy",
 		cond = function()
-			return not require("config.omarchy_theme").is_omarchy()
+			return not (vim.env.SSH_CONNECTION or vim.env.SSH_TTY)
+				and not require("config.omarchy_theme").is_omarchy()
 		end,
 		config = function()
 			require("config.plugins.auto-dark-mode")
